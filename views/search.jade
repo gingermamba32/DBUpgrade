@@ -1,0 +1,249 @@
+extends layout
+
+block content
+  h1(style="padding-top: 40px; padding-bottom: 40px;") Search Inventory
+  h5=message
+  form(method="Post", action="/query", name="DBQuery", style="padding-bottom:50px;")
+   button.search.btn(type="submit", style="font-size:25px;") Search
+   table.table-striped.table-bordered.table-responsive(width="90%", align="center", style="font-size:18px; color:black; padding-bottom: 35px;")
+    tr(style="margin: 0 auto; background: #52bab3;")
+     td #[b UPC]
+     td #[a(data-toggle="modal" data-target="#myModal", style="text-decoration:none; cursor: pointer; color:black; font-weight: 600;") DESCRIPTION]
+     td #[b LOCATION]
+     td #[b QUANTITY]
+     td #[b PO#]
+    tr
+     td(width="20%;")
+      input.form-control.upc(type="number", placeholder="barcode", size="12", name="barcode", style="font-size: 13px;padding:0px; margin:0px; height:50px;text-align:center;")
+     td(width="20%;")
+      input.form-control.location(type="text", placeholder="DES.CRIP.TION", size="12", name="description", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
+     td(width="20%;")
+      input.form-control.location(type="text", placeholder="location", size="12", name="location", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
+     td(width="20%;")
+      input.form-control.quantity(type="number", placeholder="qty", size="12", name="qty", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
+     td(width="20%;")
+      input.form-control.poNum(type="number", placeholder="po", size="12", name="po", style="font-size: 13px;padding:0px; margin:0px;height:50px; text-align:center;")
+  
+
+  div(style="width:700px; margin:0 auto")
+   h5(style="color:black;") Notes for Searching:
+   h5(style="text-align:left; color:black;") 1.  When typing into the description field, remember to add the PERIODS
+   h5(style="text-align:left; color:black;")
+    strong &nbsp;&nbsp;&nbsp;&nbsp; Length . type . color .
+   h5(style="text-align:left; color:black;") &nbsp;&nbsp;&nbsp;&nbsp; EX: #[strong 18.SI.1.] &rarr; only the color 1
+   h5(style="text-align:left; color:black;") &nbsp;&nbsp;&nbsp;&nbsp; EX: #[strong 18.SI.1] &rarr; colors 1,10,1001,12 etc.
+   h5(style="text-align:left; color:black;") 2.  Clicking on the #[strong Description] label opens a search modal
+   h5(style="text-align:left; color:black;") 3.  Currently you may only search by #[strong two] input fields at once
+   h5(style="text-align:left; color:black;") 4.  Let me know if there are any products with no upcs assigned
+
+
+
+  #myModal.modal.fade(role='dialog')
+      .modal-dialog.modal-lg
+        
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal') ×
+            h4.modal-title Search Product IDs
+          .modal-body
+            form(role='form', id='radio1', method="Post", action="/radioSearch", name="Radio",style="margin: 0 auto; width: 600px;")
+             h7(style="float: left; padding-right:5px; padding-top: 5px;font-size: 15px; color: black; font-weight: 700;") Length:
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='length', value='14', style="vertical-align: middle; padding-top:5px;")
+              | 14"
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='length', value='18', style="vertical-align: middle;padding-top:5px;")
+              | 18"
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='length', value='22', style="vertical-align: middle;padding-top:5px;")
+              | 22"
+             br
+             br
+             br
+             br
+             br
+             h7(style="float: left; padding-right:5px; padding-top: 5px;font-size: 15px; color: black; font-weight: 700;") Type:
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='S-TAPE', style="vertical-align: middle")
+              | S-TAPE
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='SI', style="vertical-align: middle")
+              | SI
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='IBODY', style="vertical-align: middle")
+              | IBODY
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='ICURLY', style="vertical-align: middle")
+              | ICURLY
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='KLS', style="vertical-align: middle")
+              | KLS
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='KBODY', style="vertical-align: middle")
+              | KBODY
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='KBODY', style="vertical-align: middle")
+              | KCULRY
+             br
+             br
+             br
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='VA16-HUMAN', style="vertical-align: middle")
+              | VA16-HUMAN 
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='SWATCH', style="vertical-align: middle")
+              | SWATCH (only search by this)            
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='PRACTICE', style="vertical-align: middle")
+              | PRACTICE (only search by this)
+             br
+             br
+             br
+             br
+             br
+             h7(style="float: left; padding-right:5px; padding-top: 5px;font-size: 15px; color: black; font-weight: 700;") Color:
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='1', style="vertical-align: middle;")
+              | 1
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='10', style="vertical-align: middle")
+              | 10
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='1001', style="vertical-align: middle")
+              | 1001
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='12/600', style="vertical-align: middle")
+              | 12/600
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='1B', style="vertical-align: middle")
+              | 1B
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='2', style="vertical-align: middle")
+              | 2             
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='12', style="vertical-align: middle")
+              | 12
+             br 
+             br
+             br
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='24', style="vertical-align: middle")
+              | 24
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='27', style="vertical-align: middle")
+              | 27
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='27/613', style="vertical-align: middle")
+              | 27/613
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='27A', style="vertical-align: middle")
+              | 27A
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='30/33', style="vertical-align: middle")
+              | 30/33
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='3R', style="vertical-align: middle")
+              | 3R             
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='4', style="vertical-align: middle")
+              | 4
+             br
+             br
+             br
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='5B', style="vertical-align: middle")
+              | 5B
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='5R', style="vertical-align: middle")
+              | 5R
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='6', style="vertical-align: middle")
+              | 6
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='60', style="vertical-align: middle")
+              | 60
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='600', style="vertical-align: middle")
+              | 600             
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='6/10', style="vertical-align: middle")
+              | 6/10             
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='613', style="vertical-align: middle")
+              | 613
+             br
+             br
+             br
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='8', style="vertical-align: middle")
+              | 8
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='BLUE', style="vertical-align: middle")
+              | BLUE
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='BURG', style="vertical-align: middle")
+              | BURG
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='DKFXA', style="vertical-align: middle")
+              | DKFXA
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='DKPURP', style="vertical-align: middle")
+              | DKPURP
+             br
+             br
+             br
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='FUNKY', style="vertical-align: middle")
+              | FUNKY
+
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='PINK', style="vertical-align: middle")
+              | PINK
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='PURP', style="vertical-align: middle")
+              | PURP             
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='RED', style="vertical-align: middle")
+              | RED
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='TEAL', style="vertical-align: middle")
+              | TEAL
+             br
+             br
+             br
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='O-12_600', style="vertical-align: middle")
+              | O-12_600
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='O-1B_6', style="vertical-align: middle")
+              | O-1B_6
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='color', value='O-4_613', style="vertical-align: middle")
+              | O-4_613
+             br
+             br
+             br
+             button(type="submit", style="font-size:30px;") Search ProductID
+             
+
+
+
+
+
+            //- p Some text in the modal.
+          .modal-footer
+            //- button.btn.btn-default(type='button', data-dismiss='modal', style="float:left;") Submit
+            button.btn.btn-default(type='button', data-dismiss='modal', style="font-size: 20px;") Close
+  script.
+    $(document).ready(function() {
+      $('input[name=barcode]').focus();
+
+      $("#radio1").trigger('reset');
+        
+      });
+      $('input:checked').removeAttr('checked');
+              $('input:checked').removeAttr('checked');
+              $('input:checked').removeAttr('checked');
+
+
+   
