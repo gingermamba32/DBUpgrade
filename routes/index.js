@@ -1226,7 +1226,7 @@ router.post('/query', function(req,res,next){
 
 
 	else if (req.body.barcode != ''){
-    Locations.find({upc: req.body.barcode}).sort({shipment: 1}).exec(function(err, docs) {
+    Locations.find({upc: new RegExp("^" + req.body.barcode)}).sort({shipment: 1}).exec(function(err, docs) {
 			console.log( docs + ' good query');
 		res.render('query', {'nums':docs});
 	 });
