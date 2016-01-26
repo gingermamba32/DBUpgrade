@@ -20,11 +20,7 @@ var Locations = db.model('location', {
 		type: String,
 		default: ''
 	}	,
-	upcAlias: [{
-		upc1: String,
-		upc2: String,
-		upc3: String
-	}]	,
+	upcAlias: [String],
 	description: {
 		type: String,
 		default: ''
@@ -151,13 +147,15 @@ router.post('/radioSearch', function(req,res,next){
 
 router.post('/addUpc', function(req, res,next){
 	console.log(req.body.quantity);
-	Locations.findOne({upc: req.body.barcode}, function(err, docs) {
+	//console.log(req.body.barcode);
+	Locations.findOne({upcAlias: { $all: req.body.upc} }, function(err, docs) {
 		if (docs != null) {
 			res.redirect('/invalidInventory');
 		}
 		else {
 			var newUpc = new Locations({
 			upc        : req.body.upc,
+			upcAlias   : [req.body.upc, req.body.alias],
 			description: (req.body.description).toUpperCase(),
 			location   : req.body.location,
 			shipment   : req.body.po,
@@ -291,21 +289,18 @@ router.post('/locateThree', function( req, res, next ){
 	if ( req.body.upc2 === '' && req.body.quantity2 === '' && req.body.upc3 === '' && req.body.quantity3 === '' && req.body.upc4 === '' && req.body.quantity4 === '' && req.body.upc5 === '' && req.body.quantity5 === ''&& req.body.upc6 === '' && req.body.quantity6 === '' && req.body.upc7 === '' && req.body.quantity7 === '' && req.body.upc8 === '' && req.body.quantity8 === ''){
 					
 					var num1 = Date.now(); 
-						// for (i=0; i<3; i++) {
-						Locations.findOne({upcAlias: {$in: req.body.upc1} }, function(err,docs){
+					//$all is used to search antyhing inside the array
+						Locations.findOne({upcAlias: { $all: req.body.upc1} }, function(err,docs){
 							if (docs === null){
 								console.log('end here! alias does not mach the upc searched for you will need to add the new UPC to the system!');
+								res.render('invalid', {message: req.body.upc1 + ' does not exist. Please add it!'});
 							}
 							else {
 								console.log(docs + 'This is first document to come up with the upc alias.');
 								var newLocation = new Locations ({
 								location   : req.body.bin11,
 								upc        : req.body.upc1,
-								upcAlias   : [
-											 docs.upcAlias[0],
-											 docs.upcAlias[1],
-											 docs.upcAlias[2]
-									],
+								upcAlias   : docs.upcAlias,
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity1,
@@ -319,75 +314,58 @@ router.post('/locateThree', function( req, res, next ){
 						
 							}
 						});
-						//};
+						
 
-	}
+	}  //end of if statement
 
-
-      //       		Locations.findOne({upc: req.body.upc1}, function(err, docss) {
-      //       			if (docss === null){
-      //       				res.render('invalid', {message: req.body.upc1 + ' does not exist. Please add it!'});
-      //       			}
-					 //    else { 
-						// 	var newLocation = new Locations({
-						// 		location   : req.body.bin11,
-						// 		upc        : req.body.upc1,
-						// 		description: docss.description,
-						// 		shipment   : req.body.shipment,
-						// 		quantity   : req.body.quantity1,
-						// 		box        : num1
-						// 	});
-						// 		console.log(newLocation);
-						// 	newLocation.save(function(err, callback){
-						// 		res.render('index', {success: req.body.upc1 + ' has been successfully added to ' + req.body.bin11 + '/PO#' + req.body.shipment});
-						// 	})
-						// }
-      //       		});
-	 //} 	//end of if statement
-
-
-	// else if (req.body.upc3 === '' && req.body.quantity3 === '' && req.body.upc4 === '' && req.body.quantity4 === '' && req.body.upc5 === '' && req.body.quantity5 === ''&& req.body.upc6 === '' && req.body.quantity6 === '' && req.body.upc7 === '' && req.body.quantity7 === '' && req.body.upc8 === '' && req.body.quantity8 === '') {
- //            		var num2 = Date.now();
- //            		Locations.findOne({upc: req.body.upc1}, function(err, docss) {
- //            			if (docss === null){
- //            				res.render('invalid', {message: req.body.upc1 + ' does not exist. Please add it!'});
- //            			}
-	// 				    else { 
-	// 						var newLocation = new Locations({
-	// 							location   : req.body.bin11,
-	// 							upc        : req.body.upc1,
-	// 							description: docss.description,
-	// 							shipment   : req.body.shipment,
-	// 							quantity   : req.body.quantity1,
-	// 							box        : num2
-	// 						});
-	// 							console.log(newLocation);
-	// 						newLocation.save(function(err, callback){
-	// 							//res.render('index', {success: req.body.upc1 + ' has been successfully added to ' + req.body.bin11 + '/PO#' + req.body.shipment});
-	// 						})
-	// 					}
- //            		});
- //            		Locations.findOne({upc: req.body.upc2}, function(err, docss) {
- //            			if (docss === null){
- //            				res.render('invalid', {message: req.body.upc2 + ' does not exist. Only '+ req.body.upc1 + ' was added. Please add it!'});
- //            			}
-	// 				    else { 
-	// 						var newLocation = new Locations({
-	// 							location   : req.body.bin11,
-	// 							upc        : req.body.upc2,
-	// 							description: docss.description,
-	// 							shipment   : req.body.shipment,
-	// 							quantity   : req.body.quantity2,
-	// 							box        : num2
-	// 						});
-	// 							console.log(newLocation);
-	// 						newLocation.save(function(err, callback){
-	// 							res.render('index', {success: req.body.upc1 + ' , ' +req.body.upc2 + ' have been successfully added to ' + req.body.bin11 + '/PO#' + req.body.shipment});
-	// 						})
-	// 					}
- //            		});
+	else if (req.body.upc3 === '' && req.body.quantity3 === '' && req.body.upc4 === '' && req.body.quantity4 === '' && req.body.upc5 === '' && req.body.quantity5 === ''&& req.body.upc6 === '' && req.body.quantity6 === '' && req.body.upc7 === '' && req.body.quantity7 === '' && req.body.upc8 === '' && req.body.quantity8 === '') {
+            		var num2 = Date.now();
+            		Locations.findOne({upcAlias: { $all: req.body.upc1} }, function(err,docs){
+							if (docs === null){
+								console.log('end here! alias does not mach the upc searched for you will need to add the new UPC to the system!');
+								res.render('invalid', {message: req.body.upc1 + ' does not exist. Please add it!'});
+							}
+							else {
+								console.log(docs + 'This is first document to come up with the upc alias.');
+								var newLocation = new Locations ({
+								location   : req.body.bin11,
+								upc        : req.body.upc1,
+								upcAlias   : docs.upcAlias,
+								description: docs.description,
+								shipment   : req.body.shipment,
+								quantity   : req.body.quantity1,
+								box        : num2
+							});
+								console.log(newLocation);
+							newLocation.save(function(err, callback){
+								//res.render('index', {success: req.body.upc1 + ' has been successfully added to ' + req.body.bin11 + '/PO#' + req.body.shipment});
+							})
+						}
+            		});
+            		Locations.findOne({upcAlias: { $all: req.body.upc2} }, function(err,docs){
+							if (docs === null){
+								console.log('end here! alias does not mach the upc searched for you will need to add the new UPC to the system!');
+								res.render('invalid', {message: req.body.upc2 + ' does not exist. Please add it!'});
+							}
+							else {
+								console.log(docs + 'This is first document to come up with the upc alias.');
+								var newLocation = new Locations ({
+								location   : req.body.bin11,
+								upc        : req.body.upc2,
+								upcAlias   : docs.upcAlias,
+								description: docs.description,
+								shipment   : req.body.shipment,
+								quantity   : req.body.quantity2,
+								box        : num2
+							});
+								console.log(newLocation);
+							newLocation.save(function(err, callback){
+								res.render('index', {success: req.body.upc1 + ' , ' +req.body.upc2 + ' have been successfully added to ' + req.body.bin11 + '/PO#' + req.body.shipment});
+							})
+						}
+            		});
 	
-	// } //end of else
+	} //end of else
 
 	// else if (req.body.upc4 === '' && req.body.quantity4 === '' && req.body.upc5 === '' && req.body.quantity5 === ''&& req.body.upc6 === '' && req.body.quantity6 === '' && req.body.upc7 === '' && req.body.quantity7 === '' && req.body.upc8 === '' && req.body.quantity8 === ''){
 	// 				var num3 = Date.now();
