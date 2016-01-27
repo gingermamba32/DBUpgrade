@@ -145,9 +145,13 @@ router.post('/radioSearch', function(req,res,next){
 	}
 })
 
+
 router.post('/addUpc', function(req, res,next){
 	console.log(req.body.quantity);
 	//console.log(req.body.barcode);
+	var num = new Date();
+	var num = Date.now();
+
 	Locations.findOne({upcAlias: { $all: req.body.upc} }, function(err, docs) {
 		if (docs != null) {
 			res.redirect('/invalidInventory');
@@ -159,7 +163,8 @@ router.post('/addUpc', function(req, res,next){
 			description: (req.body.description).toUpperCase(),
 			location   : req.body.location,
 			shipment   : req.body.po,
-			quantity   : req.body.quantity
+			quantity   : req.body.quantity,
+			box        : num
 			});
 							console.log(newUpc);
 							newUpc.save(function(err, callback){
@@ -299,7 +304,7 @@ router.post('/locateThree', function( req, res, next ){
 								console.log(docs + 'This is first document to come up with the upc alias.');
 								var newLocation = new Locations ({
 								location   : req.body.bin11,
-								upc        : req.body.upc1,
+								upc        : docs.upc,
 								upcAlias   : docs.upcAlias,
 								description: docs.description,
 								shipment   : req.body.shipment,
@@ -329,7 +334,7 @@ router.post('/locateThree', function( req, res, next ){
 								console.log(docs + 'This is first document to come up with the upc alias.');
 								var newLocation = new Locations ({
 								location   : req.body.bin11,
-								upc        : req.body.upc1,
+								upc        : docs.upc,
 								upcAlias   : docs.upcAlias,
 								description: docs.description,
 								shipment   : req.body.shipment,
@@ -351,7 +356,7 @@ router.post('/locateThree', function( req, res, next ){
 								console.log(docs + 'This is first document to come up with the upc alias.');
 								var newLocation = new Locations ({
 								location   : req.body.bin11,
-								upc        : req.body.upc2,
+								upc        : docs.upc,
 								upcAlias   : docs.upcAlias,
 								description: docs.description,
 								shipment   : req.body.shipment,
@@ -367,71 +372,79 @@ router.post('/locateThree', function( req, res, next ){
 	
 	} //end of else
 
-	// else if (req.body.upc4 === '' && req.body.quantity4 === '' && req.body.upc5 === '' && req.body.quantity5 === ''&& req.body.upc6 === '' && req.body.quantity6 === '' && req.body.upc7 === '' && req.body.quantity7 === '' && req.body.upc8 === '' && req.body.quantity8 === ''){
-	// 				var num3 = Date.now();
+	else if (req.body.upc4 === '' && req.body.quantity4 === '' && req.body.upc5 === '' && req.body.quantity5 === ''&& req.body.upc6 === '' && req.body.quantity6 === '' && req.body.upc7 === '' && req.body.quantity7 === '' && req.body.upc8 === '' && req.body.quantity8 === ''){
+					var num3 = Date.now();
 
-	// 				Locations.findOne({upc: req.body.upc1}, function(err, docss) {
- //            			if (docss === null){
- //            				res.render('invalid', {message: req.body.upc1 + ' does not exist. Please add it!'});
- //            			}
-	// 				    else { 
-	// 						var newLocation = new Locations({
-	// 							location   : req.body.bin11,
-	// 							upc        : req.body.upc1,
-	// 							description: docss.description,
-	// 							shipment   : req.body.shipment,
-	// 							quantity   : req.body.quantity1,
-	// 							box        : num3
-	// 						});
-	// 							console.log(newLocation);
-	// 						newLocation.save(function(err, callback){
-	// 							//res.render('index', {success: req.body.upc1 + ' has been successfully added to ' + req.body.bin11 + '/PO#' + req.body.shipment});
-	// 						})
-	// 					}
- //            		});
+					Locations.findOne({upcAlias: { $all: req.body.upc1} }, function(err,docs){
+							if (docs === null){
+								console.log('end here! alias does not mach the upc searched for you will need to add the new UPC to the system!');
+								res.render('invalid', {message: req.body.upc1 + ' does not exist. Please add it!'});
+							}
+							else {
+								console.log(docs + 'This is first document to come up with the upc alias.');
+								var newLocation = new Locations ({
+								location   : req.body.bin11,
+								upc        : docs.upc,
+								upcAlias   : docs.upcAlias,
+								description: docs.description,
+								shipment   : req.body.shipment,
+								quantity   : req.body.quantity1,
+								box        : num3
+							});
+								console.log(newLocation);
+							newLocation.save(function(err, callback){
+								//res.render('index', {success: req.body.upc1 + ' has been successfully added to ' + req.body.bin11 + '/PO#' + req.body.shipment});
+							})
+						}
+            		});
+            		Locations.findOne({upcAlias: { $all: req.body.upc2} }, function(err,docs){
+							if (docs === null){
+								console.log('end here! alias does not mach the upc searched for you will need to add the new UPC to the system!');
+								res.render('invalid', {message: req.body.upc2 + ' does not exist. Please add it!'});
+							}
+							else {
+								console.log(docs + 'This is first document to come up with the upc alias.');
+								var newLocation = new Locations ({
+								location   : req.body.bin11,
+								upc        : docs.upc,
+								upcAlias   : docs.upcAlias,
+								description: docs.description,
+								shipment   : req.body.shipment,
+								quantity   : req.body.quantity2,
+								box        : num3
+							});
+								console.log(newLocation);
+							newLocation.save(function(err, callback){
+								//res.render('index', {success: req.body.upc1 + ' , ' +req.body.upc2 + ' have been successfully added to ' + req.body.bin11 + '/PO#' + req.body.shipment});
+							})
+						}
+            		});
 
- //            		Locations.findOne({upc: req.body.upc2}, function(err, docss) {
- //            			if (docss === null){
- //            				res.render('invalid', {message: req.body.upc2 + ' does not exist. Only '+ req.body.upc1 + ' was added. Please add it!'});
- //            			}
-	// 				    else { 
-	// 						var newLocation = new Locations({
-	// 							location   : req.body.bin11,
-	// 							upc        : req.body.upc2,
-	// 							description: docss.description,
-	// 							shipment   : req.body.shipment,
-	// 							quantity   : req.body.quantity2,
-	// 							box        : num3
-	// 						});
-	// 							console.log(newLocation);
-	// 						newLocation.save(function(err, callback){
-	// 							//res.render('index', {success: req.body.upc1 + ' , ' +req.body.upc2 + ' have been successfully added to ' + req.body.bin11 + '/PO#' + req.body.shipment});
-	// 						})
-	// 					}
- //            		});
-
- //            		Locations.findOne({upc: req.body.upc3}, function(err, docss) {
- //            			if (docss === null){
- //            				res.render('invalid', {message: req.body.upc3 + ' does not exist. Only '+ req.body.upc1 +' and ' +req.body.upc2+ ' were added. Please add it!'});
- //            			}
-	// 				    else { 
-	// 						var newLocation = new Locations({
-	// 							location   : req.body.bin11,
-	// 							upc        : req.body.upc3,
-	// 							description: docss.description,
-	// 							shipment   : req.body.shipment,
-	// 							quantity   : req.body.quantity3,
-	// 							box        : num3
-	// 						});
-	// 							console.log(newLocation);
-	// 						newLocation.save(function(err, callback){
-	// 							res.render('index', {success: req.body.upc1 + ' , ' +req.body.upc2 + ' , ' + req.body.upc3 + ' have been successfully added to ' + req.body.bin11 + '/PO#' + req.body.shipment});
-	// 						})
-	// 					}
- //            		});
+					Locations.findOne({upcAlias: { $all: req.body.upc2} }, function(err,docs){
+							if (docs === null){
+								console.log('end here! alias does not mach the upc searched for you will need to add the new UPC to the system!');
+								res.render('invalid', {message: req.body.upc2 + ' does not exist. Please add it!'});
+							}
+							else {
+								console.log(docs + 'This is first document to come up with the upc alias.');
+								var newLocation = new Locations ({
+								location   : req.body.bin11,
+								upc        : docs.upc,
+								upcAlias   : docs.upcAlias,
+								description: docs.description,
+								shipment   : req.body.shipment,
+								quantity   : req.body.quantity3,
+								box        : num3
+							});
+								console.log(newLocation);
+							newLocation.save(function(err, callback){
+								res.render('index', {success: req.body.upc1 + ' , ' +req.body.upc2 + ' '+ 'and '+ req.body.upc3 +' have been successfully added to ' + req.body.bin11 + '/PO#' + req.body.shipment});
+							})
+						}
+            		});
 
 
-	// }
+	} //end of else if 
 
 
 	// else if (req.body.upc5 === '' && req.body.quantity5 === ''&& req.body.upc6 === '' && req.body.quantity6 === '' && req.body.upc7 === '' && req.body.quantity7 === '' && req.body.upc8 === '' && req.body.quantity8 === '') {
