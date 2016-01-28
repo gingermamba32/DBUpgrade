@@ -46,8 +46,8 @@ block content
             button.close(type='button', data-dismiss='modal') ×
             h4.modal-title Search Product IDs
           .modal-body
-            form(role='form', id='radio1', method="Post", action="/radioSearch", name="Radio",style="margin: 0 auto; width: 600px;")
-             h7(style="float: left; padding-right:5px; padding-top: 5px;font-size: 15px; color: black; font-weight: 700;") Length:
+            form(role='form', id='radio1', method="Post", action="/radioSearch", name="Radio",style="margin: 0 auto; width: 800px;")
+             h7(style="float:left; padding-right:5px; padding-top: 5px;font-size: 15px; color: black; font-weight: 700;") Length:
              label.btn.btn-primary(style="font-size: 10px;")
               input(type='radio', name='length', value='12', style="vertical-align: middle; padding-top:5px;")
               | 12"
@@ -60,6 +60,9 @@ block content
              label.btn.btn-primary(style="font-size: 10px;")
               input(type='radio', name='length', value='18', style="vertical-align: middle;padding-top:5px;")
               | 18"
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='length', value='20', style="vertical-align: middle;padding-top:5px;")
+              | 20"
              label.btn.btn-primary(style="font-size: 10px;")
               input(type='radio', name='length', value='22', style="vertical-align: middle;padding-top:5px;")
               | 22"
@@ -263,7 +266,7 @@ block content
              br
              br
              br
-             h7(style="float: left; padding-right:5px; padding-top: 5px;font-size: 15px; color: black; font-weight: 700;") Individual Products [ONLY SEARCH BY THIS]:
+             h7(style="float: left; padding-right:5px; padding-top: 5px;font-size: 15px; color: black; font-weight: 700;") Individual Products:
              label.btn.btn-primary(style="font-size: 10px;")
               input(type='radio', name='type', value='SWATCH', style="vertical-align: middle")
               | SWATCH         
@@ -271,38 +274,47 @@ block content
               input(type='radio', name='type', value='PRACTICE', style="vertical-align: middle")
               | PRACTICE
              label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='PRACTICE', style="vertical-align: middle")
-              | PRACTICE
+              input(type='radio', name='type', value='SONO', style="vertical-align: middle")
+              | SONO ACCESSORIES
              label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='PRACTICE', style="vertical-align: middle")
-              | PRACTICE
+              input(type='radio', name='type', value='COLORRING', style="vertical-align: middle")
+              | COLOR RING
              label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='PRACTICE', style="vertical-align: middle")
-              | PRACTICE
+              input(type='radio', name='type', value='QUICK', style="vertical-align: middle")
+              | QUICK PICK
              label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='PRACTICE', style="vertical-align: middle")
-              | PRACTICE
+              input(type='radio', name='type', value='GATOR', style="vertical-align: middle")
+              | GATOR CLIPS
              label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='PRACTICE', style="vertical-align: middle")
-              | PRACTICE
+              input(type='radio', name='type', value='BOND-REMOVER', style="vertical-align: middle")
+              | ALL BONDS
              label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='PRACTICE', style="vertical-align: middle")
-              | PRACTICE
-             br
-             br
-             br
-             br
-             button(type="submit", style="font-size:30px;") Search ProductID
+              input(type='radio', name='type', value='EXTENSION-BRUSH', style="vertical-align: middle")
+              | EXT BRUSH
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='REBONDS', style="vertical-align: middle")
+              | REBONDS         
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='BEAD-TOOL', style="vertical-align: middle")
+              | BEAD TOOLS
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='MELTING', style="vertical-align: middle")
+              | MELT CONN
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='LOOP', style="vertical-align: middle")
+              | LOOP TOOL
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='TAPE-REPLACEMENT', style="vertical-align: middle")
+              | REP TAPE
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='TAPE-SINGLE', style="vertical-align: middle")
+              | SINGLE TAPE
+             label.btn.btn-primary(style="font-size: 10px;")
+              input(type='radio', name='type', value='PRO', style="vertical-align: middle")
+              | PRO DISC/SINGLE
+             button(type="submit", style="font-size:30px; padding-top:10px;") Search ProductID
              
 
-
-
-
-
-            //- p Some text in the modal.
-          .modal-footer
-            //- button.btn.btn-default(type='button', data-dismiss='modal', style="float:left;") Submit
-            button.btn.btn-default(type='button', data-dismiss='modal', style="font-size: 20px;") Close
   script.
     $(document).ready(function() {
       $('input[name=barcode]').focus();

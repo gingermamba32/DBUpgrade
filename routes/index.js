@@ -77,6 +77,8 @@ router.get('/test', function(req, res, next) {
 	res.render('test');
 })
 
+
+// Search by Button Modal
 router.post('/radioSearch', function(req,res,next){
 	globalColor = req.body.color;
 	globalType = req.body.type;
@@ -105,6 +107,7 @@ router.post('/radioSearch', function(req,res,next){
 		})
 
 	}
+	// Individual Products
 	else if (req.body.length == undefined && req.body.color == undefined){
 		Locations.find({description: new RegExp(req.body.type)}).sort({shipment: 1}).exec(function(err,docs){
 			console.log( docs + ' good query type');
