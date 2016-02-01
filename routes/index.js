@@ -1276,6 +1276,7 @@ router.post('/query', function(req,res,next){
 	console.log(globalLoc + ' this is the global location now');
 	console.log(globalQty);
 	console.log(globalPo);
+
 	if (req.body.barcode != '' && req.body.location != ''){
 		Locations.find({upc: req.body.barcode, location: req.body.location}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
@@ -1366,7 +1367,7 @@ router.post('/query', function(req,res,next){
 	 		});
 		}
 		else {
-			Locations.find({description: new RegExp("^" + (req.body.description).toUpperCase())}).sort({shipment: 1}).exec(function(err, docs) {
+			Locations.find({description: new RegExp((req.body.description).toUpperCase())}).sort({shipment: 1}).exec(function(err, docs) {
 			console.log( docs + ' good query');
 			res.render('query', { 'nums': docs });
 	 		});
