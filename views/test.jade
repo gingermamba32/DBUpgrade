@@ -22,7 +22,7 @@ block content
        input.form-control.scanner(type="number", required, id="loc", placeholder="PO", name="shipment", size="10")
      tr
       td
-       input.form-control.scanner(type="text", required, id="upc1", placeholder="UPC #1",  name="upc1", size="10")
+       input.form-control.scanner#upc1(type="text", required, placeholder="UPC #1",  name="upc1", size="10")
       td
        input.form-control.quan.scanner(type="number", required, placeholder="QUANTITY #1",  name="quantity1", size="10")
      tr
@@ -64,22 +64,28 @@ block content
  
 
      
+  #myModal.modal.fade(role='dialog')
+    .modal-dialog.modal-md
+      
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal') ×
+          h4.modal-title Duplicate Inventory
+        .modal-body
+          button#dup1(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right: 5px;") UPC1
+          button#dup2(type="submit", style="font-size:30px; padding-top:5px; display: inline;") UPC2
 
+
+  button#btn(data-toggle="modal" data-target="#myModal" style="display: none;")
   script.
     $(document).ready(function() {
-
       $('input[name=bin11]').click().focus();
-
       //- success message
-
        $('.mess').hide();
-
        $('.invSub').bind('click', function(){
            window.scrollTo(0,0);
            $('.mess').show(200).delay(4000).hide(200);
        }); 
-
-
           //- Press enter on quantities to submit to inventory
         $('.quan').keypress(function (e){
          if(e.which == 13){
@@ -87,24 +93,13 @@ block content
          //window.scrollTo(200,400);
          return false;
          }
-        })
-
-
+        });
 
         $('input[name=type]').attr('checked',false);
         $('input[name=length]').attr('checked',false);
         $('input[name=color]').attr('checked',false);
 
-
-         //- function checker(){
-         //-        if ($('.check').val() != ''){
-         //-          console.log($('.check').val());
-         //-          $('.quan').prop('required',true);
-         //-          }
-
-         //-      }
-
-    });
+    
 
             function checker(){
                 if ($('#check2').val() != ''){
@@ -135,28 +130,44 @@ block content
                   console.log($('#check8').val());
                   $('#quan8').prop('required',true);
                   }
-                 
-              }
+            }
               //- https://api.mongolab.com/api/1/databases/db_v2/collections/duplicates?apiKey=Yk_2nNTxy-2hcDPl__F0Gno-_BvFPCf
 
               //var dupUPC = input from form. When tab is pressed I will need to add alert with 2 choices that I can print on the page. On Tab AJAX request to database. console.log dupUpc
-              $(function(){
+              //- var dupUpc = '1234567';
+              //- $(function(){
+              //- $('#upc1').keydown(function(e){
+              //-   if (e.which ==9){
+              //-     $.ajax({
+              //-       url: 'https://api.mongolab.com/api/1/databases/db_v2/collections/duplicates?q={"dupUPC": '+ dupUpc + '&apiKey=Yk_2nNTxy-2hcDPl__F0Gno-_BvFPCf',
+              //-       data: JSON.stringify( object ),
+              //-       type: 'GET',
+              //-       contentType: "application/json",
+              //-       success: function(upc){
+              //-         console.log(upc);
+              //-       }
+              //-     })
+              //-     }
+              //- })
+
+              //- })
+
               $('#upc1').keydown(function(e){
                 if (e.which ==9){
-                  $.ajax({
-                    url: 'https://api.mongolab.com/api/1/databases/db_v2/collections/duplicates?q={"dupUPC": '+ dupUpc + '&apiKey=Yk_2nNTxy-2hcDPl__F0Gno-_BvFPCf',
-                    data: JSON.stringify( object ),
-                    type: 'GET',
-                    contentType: "application/json",
-                    success: function(upc){
-                      console.log(upc);
-                    }
-                  })
+                  alert($(this).val());   //prints value that has been submitted after keypress
+                  $("#btn").click();
                   }
-              })
+                })
+              //- $('#upc1').keyup(function() {
+              //-     console.log($( this ).val());
+              //-     });
 
-              })
+              var duplicates = {
+                12345: { "duplicateUPC": 12345, "upc1": 11111, "upc1ProductID": "TEST-1", "upc2": 22222, "upc2ProductID": "TEST-2"}
+              }
 
+
+      });
 
 //- var getBlogPosts = function(e) {
 //- var jsonURL = "/data/allposts";
