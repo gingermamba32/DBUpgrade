@@ -155,6 +155,9 @@ block content
               $('#upc1').keydown(function(e){
                 if (e.which ==9){
                   alert($(this).val());   //prints value that has been submitted after keypress
+                  //- loop through object with value
+
+
                   $("#btn").click();
                   }
                 })
@@ -163,7 +166,8 @@ block content
               //-     });
 
               var duplicates = {
-                12345: { "duplicateUPC": 12345, "upc1": 11111, "upc1ProductID": "TEST-1", "upc2": 22222, "upc2ProductID": "TEST-2"}
+                12345: { "duplicateUPC": 12345, "upc1": 11111, "upc1ProductID": "TEST-1", "upc2": 22222, "upc2ProductID": "TEST-2"},
+                123456: { "duplicateUPC": 12346, "upc1": 33333, "upc1ProductID": "TEST-3", "upc2": 55555, "upc2ProductID": "TEST-4"}
               }
 
 
