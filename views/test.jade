@@ -69,7 +69,7 @@ block content
       
       .modal-content
         .modal-header
-          button.close(type='button', data-dismiss='modal') ×
+          button.close#close(type='button', data-dismiss='modal') ×
           h4.modal-title Duplicate Inventory
         .modal-body
           button#dup1(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right: 5px;")
@@ -184,14 +184,29 @@ block content
                     //console.log(duplicates[i].duplicateUPC);
                     if (duplicates[i].duplicateUPC == searchUPC){
                       console.log("hurray");
+                      var upc1 = duplicates[i].upc1;
+                      var upc2 = duplicates[i].upc2;
                       //- now append the values to the buttons ids= dup1, dup2
-                      $('#dup1').append(duplicates[i].upc1 + '<br/>' + duplicates[i].upc1ProductID);
-                      //maybe need to append the button value 
-                      $('#dup2').append(duplicates[i].upc2 + '<br/>' + duplicates[i].upc2ProductID);
-                      }
-                    
-                  }
-                  $("#btn").click();
+                      $('#dup1').append(upc1 + '<br/>' + duplicates[i].upc1ProductID);
+                      $('#dup2').append(upc2 + '<br/>' + duplicates[i].upc2ProductID);
+                      $("#btn").click(); 
+                      //- still need to cleak button text on click and move cursor to quantity
+                      $("#dup1").click(function () {
+                        $("#upc1").val(upc1);
+                        //- clear both dup1 and dup2 
+                        $('#close').click();
+                        //- add cursor to correct spot
+                      });  
+                      $("#dup2").click(function () {
+                        $("#upc1").val(upc2);
+                        $('#close').click();
+                      });  
+                                    
+                    }
+
+
+
+                  };
 
                   }
                 });
