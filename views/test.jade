@@ -72,8 +72,8 @@ block content
           button.close(type='button', data-dismiss='modal') ×
           h4.modal-title Duplicate Inventory
         .modal-body
-          button#dup1(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right: 5px;") UPC1
-          button#dup2(type="submit", style="font-size:30px; padding-top:5px; display: inline;") UPC2
+          button#dup1(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right: 5px;")
+          button#dup2(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
 
 
   button#btn(data-toggle="modal" data-target="#myModal" style="display: none;")
@@ -94,6 +94,8 @@ block content
          return false;
          }
         });
+
+
 
         $('input[name=type]').attr('checked',false);
         $('input[name=length]').attr('checked',false);
@@ -152,24 +154,50 @@ block content
 
               //- })
 
+              var duplicates = [
+                { duplicateUPC: 12345, upc1: 11111, upc1ProductID: "TEST-1", upc2: 22222, upc2ProductID: "TEST-2"},
+                { duplicateUPC: 123456, upc1: 33333, upc1ProductID: "TEST-3", upc2: 55555, upc2ProductID: "TEST-4"}
+              ]
+                //- console.log(duplicates[0].duplicateUPC)
+                //- console.log(duplicates[1].duplicateUPC)
+                
+    
+              //- for (var prop in duplicates) {
+              //-   //console.log("obj." + prop + " = " + duplicates[prop].upc1);
+              //-   var upc = duplicates[prop];
+              //-   console.log (upc);
+              //-   //- alert(upc);
+              //-   for(i=0,len=prop.length;i<len;i++){
+              //-     //console.log(duplicates[i]);
+              //-     //console.log(v[i].Description);
+              //-   }
+              //- }
+
               $('#upc1').keydown(function(e){
                 if (e.which ==9){
-                  alert($(this).val());   //prints value that has been submitted after keypress
-                  //- loop through object with value
-
-
-                  $("#btn").click();
+                  var searchUPC = $(this).val(); 
+                  console.log(searchUPC);  //prints value that has been submitted after keypress
+                  //- //- loop through array with value
+                  //- console.log(duplicates[1].duplicateUPC)
+                  //- console.log(duplicates.length)
+                  for(i=0;i<duplicates.length;i++){
+                    //console.log(duplicates[i].duplicateUPC);
+                    if (duplicates[i].duplicateUPC == searchUPC){
+                      console.log("hurray");
+                      //- now append the values to the buttons ids= dup1, dup2
+                      $('#dup1').append(duplicates[i].upc1 + '<br/>' + duplicates[i].upc1ProductID);
+                      //maybe need to append the button value 
+                      $('#dup2').append(duplicates[i].upc2 + '<br/>' + duplicates[i].upc2ProductID);
+                      }
+                    
                   }
-                })
-              //- $('#upc1').keyup(function() {
-              //-     console.log($( this ).val());
-              //-     });
+                  $("#btn").click();
 
-              var duplicates = {
-                12345: { "duplicateUPC": 12345, "upc1": 11111, "upc1ProductID": "TEST-1", "upc2": 22222, "upc2ProductID": "TEST-2"},
-                123456: { "duplicateUPC": 12346, "upc1": 33333, "upc1ProductID": "TEST-3", "upc2": 55555, "upc2ProductID": "TEST-4"}
-              }
-
+                  }
+                });
+                  //Now on to the button click and print the value in the form
+             
+              
 
       });
 
