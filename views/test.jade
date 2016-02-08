@@ -24,7 +24,7 @@ block content
       td
        input.form-control.scanner#upc1(type="text", required, placeholder="UPC #1",  name="upc1", size="10")
       td
-       input.form-control.quan.scanner(type="number", required, placeholder="QUANTITY #1",  name="quantity1", size="10")
+       input.form-control.quan.scanner#quan1(type="number", required, placeholder="QUANTITY #1",  name="quantity1", size="10")
      tr
       td
        input.form-control.scanner#check2(type="text", placeholder="UPC #2",  name="upc2", size="10")
@@ -74,9 +74,8 @@ block content
         .modal-body
           button#dup1(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right: 5px;")
           button#dup2(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
-
-
   button#btn(data-toggle="modal" data-target="#myModal" style="display: none;")
+    
   script.
     $(document).ready(function() {
       $('input[name=bin11]').click().focus();
@@ -193,19 +192,19 @@ block content
                       //- still need to cleak button text on click and move cursor to quantity
                       $("#dup1").click(function () {
                         $("#upc1").val(upc1);
-                        //- clear both dup1 and dup2 
                         $('#close').click();
-                        //- add cursor to correct spot
+                        $('#dup1').empty();
+                        $('#dup2').empty();
+                        $('input[name=quantity1]').click().focus();
                       });  
                       $("#dup2").click(function () {
                         $("#upc1").val(upc2);
                         $('#close').click();
-                      });  
-                                    
+                        $('#dup1').empty();
+                        $('#dup2').empty();
+                        $('input[name=quantity1]').click().focus();
+                      });                  
                     }
-
-
-
                   };
 
                   }

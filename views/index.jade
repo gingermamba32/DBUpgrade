@@ -22,9 +22,9 @@ block content
        input.form-control.scanner(type="number", required, id="loc", placeholder="PO", name="shipment", size="10")
      tr
       td
-       input.form-control.scanner(type="text", required, id="upc", placeholder="UPC #1",  name="upc1", size="10")
+       input.form-control.scanner#check1(type="text", required, placeholder="UPC #1",  name="upc1", size="10")
       td
-       input.form-control.quan.scanner(type="number", required, placeholder="QUANTITY #1",  name="quantity1", size="10")
+       input.form-control.quan.scanner#quan1(type="number", required, placeholder="QUANTITY #1",  name="quantity1", size="10")
      tr
       td
        input.form-control.scanner#check2(type="text", placeholder="UPC #2",  name="upc2", size="10")
@@ -62,6 +62,21 @@ block content
        input.form-control.quan.scanner#quan8(type="number", placeholder="QUANTITY #8",  name="quantity8", size="10")
     button.btn.invSub(type="submit", onclick="return checker();", style="font-size:35px;") Submit
  
+  #myModal.modal.fade(role='dialog')
+    .modal-dialog.modal-md
+      
+      .modal-content
+        .modal-header
+          button.close#close(type='button', data-dismiss='modal') ×
+          h4.modal-title Duplicate Inventory
+        .modal-body
+          button#dup1(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
+          div(style="width:20px; heigth: auto; display: inline-block;")
+          button#dup2(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
+ 
+
+  
+
 
      
 
@@ -104,7 +119,7 @@ block content
 
          //-      }
 
-    });
+    
 
             function checker(){
                 if ($('#check2').val() != ''){
@@ -137,6 +152,66 @@ block content
                   }
                  
               }
+
+
+              //- DUPLICATES
+              var duplicates = [
+                { duplicateUPC: 12345, upc1: 11111, upc1ProductID: "TEST-1", upc2: 22222, upc2ProductID: "TEST-2"},
+                { duplicateUPC: 123456, upc1: 33333, upc1ProductID: "TEST-3", upc2: 44444, upc2ProductID: "TEST-4"},
+                { duplicateUPC: 1234567, upc1: 55555, upc1ProductID: "TEST-1", upc2: 666666, upc2ProductID: "TEST-2"},
+                { duplicateUPC: 123, upc1: 77777, upc1ProductID: "TEST-3", upc2: 88888, upc2ProductID: "TEST-4"},
+                { duplicateUPC: 1234, upc1: 99999, upc1ProductID: "TEST-1", upc2: 20202020, upc2ProductID: "TEST-2"},
+                { duplicateUPC: 123456, upc1: 101010101, upc1ProductID: "TEST-3", upc2: 303030303, upc2ProductID: "TEST-4"},
+                { duplicateUPC: 12, upc1: 4040404040, upc1ProductID: "TEST-1", upc2: 4040404040, upc2ProductID: "TEST-2"},
+                { duplicateUPC: 12345678, upc1: 5050505050, upc1ProductID: "TEST-3", upc2: 5050505050, upc2ProductID: "TEST-4"},
+
+              ]
+
+              
+
+              $('#check1').keydown(function(e){
+                if (e.which == 9){
+                  var searchUPC = $(this).val(); 
+                  console.log(searchUPC);  //prints value that has been submitted after keypress
+                  //- //- loop through array with value
+                  //- console.log(duplicates[1].duplicateUPC)
+                  //- console.log(duplicates.length)
+                  for(i=0;i<duplicates.length;i++){
+                    //console.log(duplicates[i].duplicateUPC);
+                    if (duplicates[i].duplicateUPC == searchUPC){
+                      console.log("hurray");
+                      var upc1 = duplicates[i].upc1;
+                      var upc2 = duplicates[i].upc2;
+                      //- now append the values to the buttons ids= dup1, dup2
+                      $('#dup1').append(upc1 + '<br/>' + duplicates[i].upc1ProductID);
+                      $('#dup2').append(upc2 + '<br/>' + duplicates[i].upc2ProductID);
+                      $("#myModal").modal(); 
+                      //- still need to cleak button text on click and move cursor to quantity
+                      $("#dup1").click(function () {
+                        $("input[name=upc1]").val(upc1);
+                        $('#close').click();
+                        $('#dup1').empty();
+                        $('#dup2').empty();
+                        $('input[name=quantity1]').click().focus();
+                      });  
+                      $("#dup2").click(function () {
+                        $("input[name=upc1]").val(upc2);
+                        $('#close').click();
+                        $('#dup1').empty();
+                        $('#dup2').empty();
+                        $('input[name=quantity1]').click().focus();
+                      });                  
+                    }
+                  };
+
+                  }
+                });
+                });
+
+
+              
+
+      });
 
     //-     function addRow(tableID) {
     //- //debugger;
@@ -180,7 +255,7 @@ block content
       //-     $('input[name="upcArray"]').focus();
       //-   }
       //- }
-
+      
       //- function myDeleteFunction() {
       //-     document.getElementById("myTable").deleteRow(-1);
       //- }
