@@ -320,8 +320,235 @@ block content
                   }
                 });
 
-                //- checker #3
-              
+                //- checker #3 dup 5-6 modal3
+                $('#check3').keydown(function(e){
+
+                if (e.which == 9){
+                  var searchUPC = $(this).val();   
+
+                  for(i=0;i<duplicates.length;i++){
+
+                    if (duplicates[i].duplicateUPC == searchUPC){
+                        console.log("hurray");
+                        $('#dup5').empty();
+                        $('#dup6').empty();
+
+                        var upc1 = duplicates[i].upc1;
+                        var upc2 = duplicates[i].upc2;
+
+                      $('#dup5').append(upc1 + '<br/>' + duplicates[i].upc1ProductID);
+                      $('#dup6').append(upc2 + '<br/>' + duplicates[i].upc2ProductID);
+                      $("#myModal3").modal(); 
+
+                      $("#dup5").click(function () {
+                        $("#check3").val(upc1);
+                        $('#myModal3').modal('hide');
+                        $('input[name=quantity3]').click().focus();
+                      });  
+
+                      $("#dup6").click(function () {
+                        $("#check3").val(upc2);
+                        $('#myModal3').modal('hide');
+                        $('input[name=quantity3]').click().focus();
+                      });   
+
+                    }
+                  };
+
+                  }
+                });
+
+                //- checker #4 dup 7-8 modal4
+
+                $('#check4').keydown(function(e){
+
+                if (e.which == 9){
+                  var searchUPC = $(this).val();   
+
+                  for(i=0;i<duplicates.length;i++){
+
+                    if (duplicates[i].duplicateUPC == searchUPC){
+                        console.log("hurray");
+                        $('#dup7').empty();
+                        $('#dup8').empty();
+
+                        var upc1 = duplicates[i].upc1;
+                        var upc2 = duplicates[i].upc2;
+
+                      $('#dup7').append(upc1 + '<br/>' + duplicates[i].upc1ProductID);
+                      $('#dup8').append(upc2 + '<br/>' + duplicates[i].upc2ProductID);
+                      $("#myModal4").modal(); 
+
+                      $("#dup7").click(function () {
+                        $("#check4").val(upc1);
+                        $('#myModal4').modal('hide');
+                        $('input[name=quantity4]').click().focus();
+                      });  
+
+                      $("#dup8").click(function () {
+                        $("#check4").val(upc2);
+                        $('#myModal4').modal('hide');
+                        $('input[name=quantity4]').click().focus();
+                      });   
+
+                    }
+                  };
+
+                  }
+                });
+
+                //- checker #5 dup 9-10 modal5
+
+                $('#check5').keydown(function(e){
+
+                if (e.which == 9){
+                  var searchUPC = $(this).val();   
+
+                  for(i=0;i<duplicates.length;i++){
+
+                    if (duplicates[i].duplicateUPC == searchUPC){
+                        console.log("hurray");
+                        $('#dup9').empty();
+                        $('#dup10').empty();
+
+                        var upc1 = duplicates[i].upc1;
+                        var upc2 = duplicates[i].upc2;
+
+                      $('#dup9').append(upc1 + '<br/>' + duplicates[i].upc1ProductID);
+                      $('#dup10').append(upc2 + '<br/>' + duplicates[i].upc2ProductID);
+                      $("#myModal5").modal(); 
+
+                      $("#dup9").click(function () {
+                        $("#check5").val(upc1);
+                        $('#myModal5').modal('hide');
+                        $('input[name=quantity5]').click().focus();
+                      });  
+
+                      $("#dup10").click(function () {
+                        $("#check5").val(upc2);
+                        $('#myModal5').modal('hide');
+                        $('input[name=quantity5]').click().focus();
+                      });   
+
+                    }
+                  };
+
+                  }
+                });
+
+                //- checker #6 dup 11-12 modal6
+                $('#check6').keydown(function(e){
+
+                if (e.which == 9){
+                  var searchUPC = $(this).val();   
+
+                  for(i=0;i<duplicates.length;i++){
+
+                    if (duplicates[i].duplicateUPC == searchUPC){
+                        console.log("hurray");
+                        $('#dup11').empty();
+                        $('#dup12').empty();
+
+                        var upc1 = duplicates[i].upc1;
+                        var upc2 = duplicates[i].upc2;
+
+                      $('#dup11').append(upc1 + '<br/>' + duplicates[i].upc1ProductID);
+                      $('#dup12').append(upc2 + '<br/>' + duplicates[i].upc2ProductID);
+                      $("#myModal6").modal(); 
+
+                      $("#dup11").click(function () {
+                        $("#check6").val(upc1);
+                        $('#myModal6').modal('hide');
+                        $('input[name=quantity6]').click().focus();
+                      });  
+
+                      $("#dup12").click(function () {
+                        $("#check6").val(upc2);
+                        $('#myModal6').modal('hide');
+                        $('input[name=quantity6]').click().focus();
+                      });   
+
+                    }
+                  };
+
+                  }
+                });
+
+                //- checker #7 dup 13-14 modal7
+                $('#check7').keydown(function(e){
+
+                if (e.which == 9){
+                  var searchUPC = $(this).val();   
+
+                  for(i=0;i<duplicates.length;i++){
+
+                    if (duplicates[i].duplicateUPC == searchUPC){
+                        console.log("hurray");
+                        $('#dup13').empty();
+                        $('#dup14').empty();
+
+                        var upc1 = duplicates[i].upc1;
+                        var upc2 = duplicates[i].upc2;
+
+                      $('#dup13').append(upc1 + '<br/>' + duplicates[i].upc1ProductID);
+                      $('#dup14').append(upc2 + '<br/>' + duplicates[i].upc2ProductID);
+                      $("#myModal7").modal(); 
+
+                      $("#dup13").click(function () {
+                        $("#check7").val(upc1);
+                        $('#myModal7').modal('hide');
+                        $('input[name=quantity7]').click().focus();
+                      });  
+
+                      $("#dup14").click(function () {
+                        $("#check7").val(upc2);
+                        $('#myModal7').modal('hide');
+                        $('input[name=quantity7]').click().focus();
+                      });   
+
+                    }
+                  };
+
+                  }
+                });
+
+                //- checker #8 dup 15-16 modal8
+                $('#check8').keydown(function(e){
+
+                if (e.which == 9){
+                  var searchUPC = $(this).val();   
+
+                  for(i=0;i<duplicates.length;i++){
+
+                    if (duplicates[i].duplicateUPC == searchUPC){
+                        console.log("hurray");
+                        $('#dup15').empty();
+                        $('#dup16').empty();
+
+                        var upc1 = duplicates[i].upc1;
+                        var upc2 = duplicates[i].upc2;
+
+                      $('#dup15').append(upc1 + '<br/>' + duplicates[i].upc1ProductID);
+                      $('#dup16').append(upc2 + '<br/>' + duplicates[i].upc2ProductID);
+                      $("#myModal8").modal(); 
+
+                      $("#dup15").click(function () {
+                        $("#check8").val(upc1);
+                        $('#myModal8').modal('hide');
+                        $('input[name=quantity8]').click().focus();
+                      });  
+
+                      $("#dup16").click(function () {
+                        $("#check8").val(upc2);
+                        $('#myModal8').modal('hide');
+                        $('input[name=quantity8]').click().focus();
+                      });   
+
+                    }
+                  };
+
+                  }
+                });
 
               
 
