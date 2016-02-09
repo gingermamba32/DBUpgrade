@@ -64,15 +64,91 @@ block content
  
   #myModal.modal.fade(role='dialog')
     .modal-dialog.modal-md
-      
       .modal-content
         .modal-header
-          button.close#close(type='button', data-dismiss='modal') ×
+          button.close#close1(type='button', data-dismiss='modal') ×
           h4.modal-title Duplicate Inventory
         .modal-body
           button#dup1(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
           div(style="width:20px; heigth: auto; display: inline-block;")
           button#dup2(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
+
+
+  #myModal2.modal.fade(role='dialog')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal') ×
+          h4.modal-title Duplicate Inventory
+        .modal-body
+          button#dup3(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
+          div(style="width:20px; heigth: auto; display: inline-block;")
+          button#dup4(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
+  #myModal3.modal.fade(role='dialog')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal') ×
+          h4.modal-title Duplicate Inventory
+        .modal-body
+          button#dup5(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
+          div(style="width:20px; heigth: auto; display: inline-block;")
+          button#dup6(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
+
+  #myModal4.modal.fade(role='dialog')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal') ×
+          h4.modal-title Duplicate Inventory
+        .modal-body
+          button#dup7(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
+          div(style="width:20px; heigth: auto; display: inline-block;")
+          button#dup8(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
+
+  #myModal5.modal.fade(role='dialog')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal') ×
+          h4.modal-title Duplicate Inventory
+        .modal-body
+          button#dup9(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
+          div(style="width:20px; heigth: auto; display: inline-block;")
+          button#dup10(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
+
+  #myModal6.modal.fade(role='dialog')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal') ×
+          h4.modal-title Duplicate Inventory
+        .modal-body
+          button#dup11(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
+          div(style="width:20px; heigth: auto; display: inline-block;")
+          button#dup12(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
+
+  #myModal7.modal.fade(role='dialog')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal') ×
+          h4.modal-title Duplicate Inventory
+        .modal-body
+          button#dup13(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
+          div(style="width:20px; heigth: auto; display: inline-block;")
+          button#dup14(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
+
+  #myModal8.modal.fade(role='dialog')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal') ×
+          h4.modal-title Duplicate Inventory
+        .modal-body
+          button#dup15(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
+          div(style="width:20px; heigth: auto; display: inline-block;")
+          button#dup16(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
  
 
   
@@ -182,32 +258,70 @@ block content
                       console.log("hurray");
                       var upc1 = duplicates[i].upc1;
                       var upc2 = duplicates[i].upc2;
+                      $('#dup1').empty();
+                      $('#dup2').empty();
                       //- now append the values to the buttons ids= dup1, dup2
                       $('#dup1').append(upc1 + '<br/>' + duplicates[i].upc1ProductID);
                       $('#dup2').append(upc2 + '<br/>' + duplicates[i].upc2ProductID);
                       $("#myModal").modal(); 
                       //- still need to cleak button text on click and move cursor to quantity
                       $("#dup1").click(function () {
-                        $("input[name=upc1]").val(upc1);
-                        $('#close').click();
-                        $('#dup1').empty();
-                        $('#dup2').empty();
+                        $("#check1").val(upc1);
+                        $('#myModal').modal('hide');
                         $('input[name=quantity1]').click().focus();
                       });  
                       $("#dup2").click(function () {
-                        $("input[name=upc1]").val(upc2);
-                        $('#close').click();
-                        $('#dup1').empty();
-                        $('#dup2').empty();
+                        $("#check1").val(upc2);
+                        $('#myModal').modal('hide');
                         $('input[name=quantity1]').click().focus();
-                      });                  
+                      });
                     }
                   };
 
                   }
                 });
+              
+
+
+              $('#check2').keydown(function(e){
+
+                if (e.which == 9){
+                  var searchUPC = $(this).val();   
+
+                  for(i=0;i<duplicates.length;i++){
+
+                    if (duplicates[i].duplicateUPC == searchUPC){
+                        console.log("hurray");
+                        $('#dup3').empty();
+                        $('#dup4').empty();
+
+                        var upc1 = duplicates[i].upc1;
+                        var upc2 = duplicates[i].upc2;
+
+                      $('#dup3').append(upc1 + '<br/>' + duplicates[i].upc1ProductID);
+                      $('#dup4').append(upc2 + '<br/>' + duplicates[i].upc2ProductID);
+                      $("#myModal2").modal(); 
+
+                      $("#dup3").click(function () {
+                        $("#check2").val(upc1);
+                        $('#myModal2').modal('hide');
+                        $('input[name=quantity2]').click().focus();
+                      });  
+
+                      $("#dup4").click(function () {
+                        $("#check2").val(upc2);
+                        $('#myModal2').modal('hide');
+                        $('input[name=quantity2]').click().focus();
+                      });   
+
+                    }
+                  };
+
+                  }
                 });
 
+                //- checker #3
+              
 
               
 
