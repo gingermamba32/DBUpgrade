@@ -12,7 +12,7 @@ catch(err){
 }
 console.log("uristring is "+ uristring);
 
-var db = mongoose.connect( 'mongodb://gingermamba:leigh1@ds039095.mongolab.com:39095/db_v2' );
+var db = mongoose.connect( uristring);
 
 // db schema for the locations collection
 var Locations = db.model('location', { 
