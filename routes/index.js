@@ -8,7 +8,7 @@ try{
 }
 catch(err){
 	console.log("no connection file so go on to Heroku config var");
-	var uristring = process.env.MONGOLAB_URI;   //if Heroku env set the config variable
+	var uristring = process.env.MONGOLAB_URL;   //if Heroku env set the config variable
 }
 console.log("uristring is "+ uristring);
 
@@ -28,19 +28,19 @@ var Locations = db.model('location', {
 	shipment: {
         type: String,
         default: ''
-        },
+    }   ,
     location: {
         type: String,
         default: ''
-        },
+    }   ,
     quantity: {
         type: Number,
         default: ''
-        },
+    }   ,
     box: {
     	type: Number, 
     	default: ''
-    },
+    }   ,
     created: {
         type: Date,
         default: Date.now
