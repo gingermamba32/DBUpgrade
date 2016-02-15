@@ -12,10 +12,10 @@ catch(err){
 }
 console.log("uristring is "+ uristring);
 
-var db = mongoose.connect( uristring);
+var db = mongoose.connect( uristring );
 
 // db schema for the locations collection
-var Locations = db.model('location', { 
+var Locations = mongoose.connect( uristring ).model('location', { 
 	upc: {
 		type: String,
 		default: ''
