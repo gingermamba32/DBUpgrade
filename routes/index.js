@@ -12,7 +12,14 @@ catch(err){
 }
 console.log("uristring is "+ uristring);
 
-var db = mongoose.connect( uristring);
+mongoose.connect( uristring, function (err,res){
+	if (err) {
+		console.log('err');
+	}
+	else{
+		console.log('success');
+	}
+})
 
 // db schema for the locations collection
 var Locations = db.model('location', { 
