@@ -2,15 +2,16 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-// try catch the database
-try{
-	var uristring = require('./mongolabsuri.js').name;
-}
-catch(err){
-	console.log("no connection file so go on to Heroku config var");
-	var uristring = process.env.MONGOLAB_URL;   //if Heroku env set the config variable
-}
-console.log("uristring is "+ uristring);
+// // try catch the database
+// try{
+// 	var uristring = require('./mongolabsuri.js').name;
+// }
+// catch(err){
+// 	console.log("no connection file so go on to Heroku config var");
+// 	var uristring = process.env.MONGOLAB_URL;   //if Heroku env set the config variable
+// }
+// console.log("uristring is "+ uristring);
+var uristring = process.env.MONGOLAB_URL;
 
 mongoose.connect( uristring, function (err,res){
 	if (err) {
@@ -22,7 +23,7 @@ mongoose.connect( uristring, function (err,res){
 })
 
 // db schema for the locations collection
-var Locations = db.model('location', { 
+var locationsSchema = new mongoose.Schema({ 
 	upc: {
 		type: String,
 		default: ''
@@ -54,6 +55,7 @@ var Locations = db.model('location', {
     }
 });
 
+var Locations = mongoose.model('locations', locationsSchema);
 
 // buttons page
 router.get('/', function(req, res, next) {
