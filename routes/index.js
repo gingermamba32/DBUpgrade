@@ -32,7 +32,7 @@ var locationsSchema = new mongoose.Schema({
 	upcActual: {
 		type: String,
 		default: ''
-	}
+	}    ,
 	description: {
 		type: String,
 		default: ''
