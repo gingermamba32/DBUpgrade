@@ -64,11 +64,11 @@ block content
  
   #myModal.modal.fade(role='dialog')
     .modal-dialog.modal-lg
-      .modal-content(style="height: 300px;")
+      .modal-content
         .modal-header
           button.close#close1(type='button', data-dismiss='modal') ×
           h4.modal-title Duplicate Inventory
-        .modal-body
+        .modal-body(style="height: 300px;")
           button#dup1(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
           div(style="width:20px; heigth: auto; display: inline-block;")
           button#dup2(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
@@ -238,7 +238,7 @@ block content
                 {duplicateUPC: 702795849276, upc1:600346750920, upc1ProductID: '16.SI.2.', upc2: 799861394273, upc2ProductID: '16.VA16-HUMAN.2.'},
                 {duplicateUPC: 702795849283, upc1:600346750937, upc1ProductID: '16.SI.3R.', upc2: 799861394280, upc2ProductID: '16.VA16-HUMAN.4.'},
                 {duplicateUPC: 702795849290, upc1:600346750944, upc1ProductID: '16.SI.4.', upc2: 702795849290, upc2ProductID: '16.VA16-HUMAN.4/33.'},
-                {duplicateUPC: 70279584930, upc1:600346750951, upc1ProductID: '16.SI.5B.', upc2: 799861394303, upc2ProductID: '16.VA16-HUMAN.6.'},
+                {duplicateUPC: 702795849306, upc1:600346750951, upc1ProductID: '16.SI.5B.', upc2: 799861394303, upc2ProductID: '16.VA16-HUMAN.6.'},
                 {duplicateUPC: 702795849313, upc1:600346750968, upc1ProductID: '16.SI.5R.', upc2: 799861394310, upc2ProductID: '16.VA16-HUMAN.6/10.'},
                 {duplicateUPC: 702795849320, upc1:600346750975, upc1ProductID: '16.SI.6.', upc2: 702795849320, upc2ProductID: '16.VA16-HUMAN.6/24.'},
                 {duplicateUPC: 702795849337, upc1:600346750982, upc1ProductID: '16.SI.6/10.', upc2: 799861394334, upc2ProductID: '16.VA16-HUMAN.8.'},
@@ -363,9 +363,9 @@ block content
                         $('input[name=quantity1]').click().focus();
                       });
                     }
-                  else{
-                    $('#quan1').click().focus();
-                  }
+                  //- else{
+                  //-   $('#quan1').click().focus();
+                  //- }
                   };
 
                   } //end if
