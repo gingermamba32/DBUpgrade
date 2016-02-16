@@ -334,7 +334,7 @@ block content
                 if (e.which == 13){
                   var searchUPC = $(this).val(); 
                   console.log(searchUPC);  //prints value that has been submitted after keypress
-                  $('#quan1').focus();
+                  //$('#quan1').click().focus();
                   //- //- loop through array with value
                   //- console.log(duplicates[1].duplicateUPC)
                   //- console.log(duplicates.length)
@@ -363,6 +363,9 @@ block content
                         $('input[name=quantity1]').click().focus();
                       });
                     }
+                  else{
+                    $('#quan1').click().focus();
+                  }
                   };
 
                   } //end if
