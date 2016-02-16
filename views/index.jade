@@ -34,7 +34,7 @@ block content
       td
        input.form-control.scanner#check3(type="text", placeholder="UPC #3",  name="upc3", size="10")
       td
-       input.form-control.quan.scanner#quan3(type="number", placeholder="QUANTITY #3",  name="quantity3", size="10")
+       input.form-control.quan.scanner#quan3(type="number", placeholder="QUANTITY #3",  name="quantity3", size="12")
      tr
       td
        input.form-control.scanner#check4(type="text", placeholder="UPC #4",  name="upc4", size="10")
@@ -327,11 +327,11 @@ block content
               ]
 
               
-
-              $('#check1').keydown(function(e){
-                if (e.which == 9){
+              //console.log($('#check1[').val().length);
+              $('#check1').keypress(function(e){
+                if ($('#check1').val().length === 12){
                   var searchUPC = $(this).val(); 
-                  console.log(searchUPC);  //prints value that has been submitted after keypress
+                  console.log(searchUPC + 'testing');  //prints value that has been submitted after keypress
                   //- //- loop through array with value
                   //- console.log(duplicates[1].duplicateUPC)
                   //- console.log(duplicates.length)
@@ -361,8 +361,8 @@ block content
                     }
                   };
 
-                  }
-                });
+                  } //end if
+                });  //end keydown
               
 
 
