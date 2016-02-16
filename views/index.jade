@@ -19,7 +19,7 @@ block content
       td(style="width:50%;")
        input.form-control.scanner(type="text", required, id="loc", placeholder="LOCATION", name="bin11", size="18")
       td
-       input.form-control.scanner(type="number", required, id="loc", placeholder="PO", name="shipment", size="10")
+       input.form-control.scanner(type="text", required, id="loc", placeholder="PO", name="shipment", size="10")
      tr
       td
        input.form-control.scanner#check1(type="text", required, placeholder="UPC #1",  name="upc1", size="10")
@@ -363,9 +363,9 @@ block content
                         $('input[name=quantity1]').click().focus();
                       });
                     }
-                    else{
-                      $('input[name=quantity1]').click().focus();
-                  }
+                  //-   else{
+                  //-     $('input[name=quantity1]').click().focus();
+                  //- }
                   };
 
                   } //end if
