@@ -63,89 +63,89 @@ block content
     button.btn.invSub(type="submit", onclick="return checker();", style="font-size:35px;") Submit
  
   #myModal.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close#close1(type='button', data-dismiss='modal') ×
           h4.modal-title Duplicate Inventory
-        .modal-body
+        .modal-body(style="height: 300px;")
           button#dup1(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
           div(style="width:20px; heigth: auto; display: inline-block;")
           button#dup2(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
 
 
   #myModal2.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
           h4.modal-title Duplicate Inventory
-        .modal-body
+        .modal-body(style="height: 300px;")
           button#dup3(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
           div(style="width:20px; heigth: auto; display: inline-block;")
           button#dup4(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
   #myModal3.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
           h4.modal-title Duplicate Inventory
-        .modal-body
+        .modal-body(style="height: 300px;")
           button#dup5(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
           div(style="width:20px; heigth: auto; display: inline-block;")
           button#dup6(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
 
   #myModal4.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
           h4.modal-title Duplicate Inventory
-        .modal-body
+        .modal-body(style="height: 300px;")
           button#dup7(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
           div(style="width:20px; heigth: auto; display: inline-block;")
           button#dup8(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
 
   #myModal5.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
           h4.modal-title Duplicate Inventory
-        .modal-body
+        .modal-body(style="height: 300px;")
           button#dup9(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
           div(style="width:20px; heigth: auto; display: inline-block;")
           button#dup10(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
 
   #myModal6.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
           h4.modal-title Duplicate Inventory
-        .modal-body
+        .modal-body(style="height: 300px;")
           button#dup11(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
           div(style="width:20px; heigth: auto; display: inline-block;")
           button#dup12(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
 
   #myModal7.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
           h4.modal-title Duplicate Inventory
-        .modal-body
+        .modal-body(style="height: 300px;")
           button#dup13(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
           div(style="width:20px; heigth: auto; display: inline-block;")
           button#dup14(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
 
   #myModal8.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
           h4.modal-title Duplicate Inventory
-        .modal-body
+        .modal-body(style="height: 300px;")
           button#dup15(type="submit", style="font-size:30px; padding-top:5px; display: inline; padding-right:5px;")
           div(style="width:20px; heigth: auto; display: inline-block;")
           button#dup16(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
@@ -329,7 +329,7 @@ block content
               
               //console.log($('#check1[').val().length);
               $('#check1').keypress(function(e){
-                if ($('#check1').val().length === 12){
+                if ($('#check1').val().length === 11){
                   var searchUPC = $(this).val(); 
                   console.log(searchUPC + 'testing');  //prints value that has been submitted after keypress
                   //- //- loop through array with value
