@@ -64,7 +64,7 @@ block content
  
   #myModal.modal.fade(role='dialog')
     .modal-dialog.modal-lg
-      .modal-content
+      .modal-content(style="height: 300px;")
         .modal-header
           button.close#close1(type='button', data-dismiss='modal') ×
           h4.modal-title Duplicate Inventory
@@ -355,6 +355,7 @@ block content
                         $("#check1").val(upc1);
                         $('#myModal').modal('hide');
                         $('input[name=quantity1]').click().focus();
+                        $('#quan1').focus();
                       });  
                       $("#dup2").click(function () {
                         $("#check1").val(upc2);
