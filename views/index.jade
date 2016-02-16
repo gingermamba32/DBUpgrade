@@ -63,7 +63,7 @@ block content
     button.btn.invSub(type="submit", onclick="return checker();", style="font-size:35px;") Submit
  
   #myModal.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close#close1(type='button', data-dismiss='modal') ×
@@ -75,7 +75,7 @@ block content
 
 
   #myModal2.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
@@ -85,7 +85,7 @@ block content
           div(style="width:20px; heigth: auto; display: inline-block;")
           button#dup4(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
   #myModal3.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
@@ -96,7 +96,7 @@ block content
           button#dup6(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
 
   #myModal4.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
@@ -107,7 +107,7 @@ block content
           button#dup8(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
 
   #myModal5.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
@@ -118,7 +118,7 @@ block content
           button#dup10(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
 
   #myModal6.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
@@ -129,7 +129,7 @@ block content
           button#dup12(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
 
   #myModal7.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
@@ -140,7 +140,7 @@ block content
           button#dup14(type="submit", style="font-size:30px; padding-top:5px; display: inline;")
 
   #myModal8.modal.fade(role='dialog')
-    .modal-dialog.modal-md
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
@@ -408,7 +408,7 @@ block content
                 //- checker #3 dup 5-6 modal3
                 $('#check3').keydown(function(e){
 
-                if (e.which == 9){
+                if (e.which == 13){
                   var searchUPC = $(this).val();   
 
                   for(i=0;i<duplicates.length;i++){
@@ -447,7 +447,7 @@ block content
 
                 $('#check4').keydown(function(e){
 
-                if (e.which == 9){
+                if (e.which == 13){
                   var searchUPC = $(this).val();   
 
                   for(i=0;i<duplicates.length;i++){
@@ -486,7 +486,7 @@ block content
 
                 $('#check5').keydown(function(e){
 
-                if (e.which == 9){
+                if (e.which == 13){
                   var searchUPC = $(this).val();   
 
                   for(i=0;i<duplicates.length;i++){
@@ -524,7 +524,7 @@ block content
                 //- checker #6 dup 11-12 modal6
                 $('#check6').keydown(function(e){
 
-                if (e.which == 9){
+                if (e.which == 13){
                   var searchUPC = $(this).val();   
 
                   for(i=0;i<duplicates.length;i++){
@@ -562,7 +562,7 @@ block content
                 //- checker #7 dup 13-14 modal7
                 $('#check7').keydown(function(e){
 
-                if (e.which == 9){
+                if (e.which == 13){
                   var searchUPC = $(this).val();   
 
                   for(i=0;i<duplicates.length;i++){
@@ -600,7 +600,7 @@ block content
                 //- checker #8 dup 15-16 modal8
                 $('#check8').keydown(function(e){
 
-                if (e.which == 9){
+                if (e.which == 13){
                   var searchUPC = $(this).val();   
 
                   for(i=0;i<duplicates.length;i++){
