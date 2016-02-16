@@ -179,12 +179,9 @@ block content
         //-  return false;
         //-  }
        	//- })
-                  $(window).keydown(function(event){
-            if(event.keyCode == 13) {
-              event.preventDefault();
-              return false;
-            }
-          });
+            $(document).on("keypress", "form", function(event) { 
+              return event.keyCode != 13;
+            });
 
 
         $('input[name=type]').attr('checked',false);
@@ -334,7 +331,7 @@ block content
               
 
               $('#check1').keypress(function(e){
-                if (e.which == 9){
+                if (e.which == 13){
                   var searchUPC = $(this).val(); 
                   console.log(searchUPC);  //prints value that has been submitted after keypress
                   //- //- loop through array with value
