@@ -328,7 +328,7 @@ block content
 
               
 
-              $('#check1').keydown(function(e){
+              $('#check1').keypress(function(e){
                 if (e.which == 9){
                   var searchUPC = $(this).val(); 
                   console.log(searchUPC);  //prints value that has been submitted after keypress
