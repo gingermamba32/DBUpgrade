@@ -394,6 +394,10 @@ block content
 
       $("#radio").trigger('reset');
 
+      $(document).on("keypress", "form", function(event) { 
+              return event.keyCode != 13;
+      });
+
     //- $(".loc").keyup(function() {
     //-     if ($(this).val().length === 8) {
     //-         $('input[name=productupc11]').focus();

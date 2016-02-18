@@ -393,6 +393,9 @@ block content
       $('input:checked').removeAttr('checked');
               $('input:checked').removeAttr('checked');
               $('input:checked').removeAttr('checked');
+      $(document).on("keypress", "form", function(event) { 
+              return event.keyCode != 13;
+            });
 
 
    

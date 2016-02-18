@@ -192,6 +192,37 @@ router.post('/addUpc', function(req, res,next){
 });
 
 
+
+router.post('/oldUpc', function(req, res, next){
+	console.log(req.body.upc);
+	console.log(req.body.oldupc);
+	var query = {upc: req.body.upc};
+	Locations.update({upc: req.body.upc}, {$push: {upcAlias: req.body.oldupc}}, {upsert: true, multi: true}, function(err, docs) {
+		if (docs == null) {
+			res.render('invalid', {message: req.body.upc + ' Doesnt Exist!'});
+		}
+		else {
+			console.log(docs);
+			res.render('test', {successmessage: 'You have successfully added '+ req.body.oldupc + ' to ' + req.body.upc});
+			// 				})
+			// console.log(docs.length);
+			// var newUpc = new Locations({
+			// upc        : req.body.upc,
+			// upcAlias   : [req.body.upc, req.body.alias],
+			// description: (req.body.description).toUpperCase(),
+			// location   : req.body.location,
+			// shipment   : req.body.po,
+			// quantity   : req.body.quantity,
+			// box        : num
+			// });
+			// 				console.log(newUpc);
+			// 				newUpc.save(function(err, callback){
+			// 				res.render('upc', {successmessage: 'You have successfully added '+ req.body.description+ ' to the database.'});
+			// 				})
+		}
+	});
+});
+
 // // Query the database by UPC and return 
 // router.post('/query1', function( req, res, next ){
 // 	console.log(req.body.barcode);
