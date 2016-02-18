@@ -13,19 +13,23 @@ block content
      td #[b LOCATION]
      td #[b QUANTITY]
      td #[b PO#]
+     td #[b TIME]
      td #[b Update]
      td #[b Delete]
     tr
-     td(width="20%;")
+     td(width="15%;")
       input.form-control.upc(type="text", placeholder="barcode", size="8", name="barcode", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
      td(width="20%;")
       input.form-control.location(type="text", placeholder="DES.CRIP.TION", size="8", name="description", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
-     td(width="20%;")
+     td(width="15%;")
       input.form-control.location(type="text", placeholder="location", size="8", name="location", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
-     td(width="20%;")
+     td(width="5%;")
       input.form-control.quantity(type="text", placeholder="qty", size="8", name="qty", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
-     td(width="20%;")
+     td(width="10%;")
       input.form-control.poNum(type="text", placeholder="po", size="8", name="po", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
+     td(width="20%;") N/A
+     td(width="7%;") N/A
+     td(width="7%;") N/A
      
 
     if (nums.length)
@@ -36,6 +40,7 @@ block content
        td= post.location 
        td= post.quantity
        td= post.shipment
+       td= post.box
        td #[a(href="/updateproduct/#{post.id}") Update]
        td #[a(href="/deleteuser/#{post.id}", onclick="return warningList();") Delete]
 

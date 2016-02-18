@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var moment = require('moment');
 
 // try catch the database
 try{
@@ -50,7 +51,7 @@ var locationsSchema = new mongoose.Schema({
         default: ''
     }   ,
     box: {
-    	type: Number, 
+    	type: String, 
     	default: ''
     }   ,
     created: {
@@ -328,7 +329,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity1,
-								box        : num1
+								box        : moment(num1).format('YYYY-MM-DD HH:mm:ss')
 
 								});
 										console.log(newLocation);
@@ -359,7 +360,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity1,
-								box        : num2
+								box        : moment(num2).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -382,7 +383,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity2,
-								box        : num2
+								box        : moment(num2).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -411,7 +412,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity1,
-								box        : num3
+								box        : moment(num3).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -434,7 +435,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity2,
-								box        : num3
+								box        : moment(num3).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -458,7 +459,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity3,
-								box        : num3
+								box        : moment(num3).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -489,7 +490,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity1,
-								box        : num4
+								box        : moment(num4).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -512,7 +513,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity2,
-								box        : num4
+								box        : moment(num4).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -536,7 +537,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity3,
-								box        : num4
+								box        : moment(num4).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -560,7 +561,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity4,
-								box        : num4
+								box        : moment(num4).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -589,7 +590,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity1,
-								box        : num5
+								box        : moment(num5).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -612,7 +613,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity2,
-								box        : num5
+								box        : moment(num5).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -636,7 +637,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity3,
-								box        : num5
+								box        : moment(num5).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -660,7 +661,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity4,
-								box        : num5
+								box        : moment(num5).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -684,7 +685,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity5,
-								box        : num5
+								box        : moment(num5).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -713,7 +714,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity1,
-								box        : num6
+								box        : moment(num6).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -736,7 +737,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity2,
-								box        : num6
+								box        : moment(num6).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -760,7 +761,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity3,
-								box        : num6
+								box        : moment(num6).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -784,7 +785,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity4,
-								box        : num6
+								box        : moment(num6).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -808,7 +809,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity5,
-								box        : num6
+								box        : moment(num6).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -832,7 +833,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity6,
-								box        : num6
+								box        : moment(num6).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -861,7 +862,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity1,
-								box        : num7
+								box        : moment(num7).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -884,7 +885,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity2,
-								box        : num7
+								box        : moment(num7).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -908,7 +909,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity3,
-								box        : num7
+								box        : moment(num7).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -932,7 +933,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity4,
-								box        : num7
+								box        : moment(num7).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -956,7 +957,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity5,
-								box        : num7
+								box        : moment(num7).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -980,7 +981,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity6,
-								box        : num7
+								box        : moment(num7).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -1004,7 +1005,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity7,
-								box        : num7
+								box        : moment(num7).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -1033,7 +1034,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity1,
-								box        : num8
+								box        : moment(num8).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -1056,7 +1057,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity2,
-								box        : num8
+								box        : moment(num8).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -1080,7 +1081,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity3,
-								box        : num8
+								box        : moment(num8).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -1104,7 +1105,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity4,
-								box        : num8
+								box        : moment(num8).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -1128,7 +1129,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity5,
-								box        : num8
+								box        : moment(num8).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -1152,7 +1153,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity6,
-								box        : num8
+								box        : moment(num8).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -1176,7 +1177,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity7,
-								box        : num8
+								box        : moment(num8).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
@@ -1199,7 +1200,7 @@ router.post('/locateThree', function( req, res, next ){
 								description: docs.description,
 								shipment   : req.body.shipment,
 								quantity   : req.body.quantity8,
-								box        : num8
+								box        : moment(num8).format('YYYY-MM-DD HH:mm:ss')
 							});
 								console.log(newLocation);
 							newLocation.save(function(err, callback){
