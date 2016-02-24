@@ -4,7 +4,7 @@ block content
   
   h1(style="padding-top: 40px;") Search Inventory
   
-  form(method="Post", action="/query", name="DBQuery", style="padding-bottom: 50px; padding-top: 50px;")
+  form(method="Post", action="/query", name="DBQuery", style="padding-top: 50px;")
    button.search.btn(type="submit", style="font-size:15px;") Search
    table.table-striped.table-bordered.table-responsive(width="90%", align="center", style="font-size:18px; color:black;")
     tr(style="margin: 0 auto; background: #52bab3;")
@@ -32,17 +32,42 @@ block content
      td(width="7%;") N/A
      
 
-    if (nums.length)
+    //- if (nums.length)
+    //-  each post, i in nums
+    //-   tr
+    //-    td= post.upc
+    //-    td= post.description
+    //-    td= post.location 
+    //-    td= post.quantity
+    //-    td= post.shipment
+    //-    td= post.box
+    //-    td #[a(href="/updateproduct/#{post.id}") Update] 
+    //-    td #[a(href="/deleteuser/#{post.id}", onclick="return warningList();") Delete]
+    //-    //- new stuff
+  form(method="Post", action="/updateall", name="AllUpdate",style="padding-bottom: 50px;")
+   if (nums.length)
      each post, i in nums
-      tr
-       td= post.upc
-       td= post.description
-       td= post.location 
-       td= post.quantity
-       td= post.shipment
-       td= post.box
-       td #[a(href="/updateproduct/#{post.id}") Update]
-       td #[a(href="/deleteuser/#{post.id}", onclick="return warningList();") Delete]
+      table.table-striped.table-bordered.table-responsive(width="90%", align="center", style="font-size:18px; color:black;")
+       tr(style="margin: 0 auto; background: #52bab3;")
+        td(width="14%;" style="background: #ffffff;")= post.upc
+        td(style="display:none;")
+         input.form-control.upc(type="text", value="#{post.upc}", size="8", name="barcode", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
+        td(width="20%;" style="background: #ffffff;")= post.description
+        td(style="display:none;")
+         input.form-control.location(type="text", value="#{post.description}", size="8", name="description", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
+        td(width="15%;")
+         input.form-control.location(type="text", value="#{post.location}", size="8", name="location", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
+        td(width="8%;")
+         input.form-control.quantity(type="number", value="#{post.quantity}", size="8", name="qty", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
+        td(width="10%;")
+         input.form-control.poNum(type="text", value="#{post.shipment}", size="8", name="po", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
+        td(width="19%;" style="background: #ffffff;")= post.box 
+        td(width="7%;" style="background: #ffffff;") #[a(href="/updateproduct/#{post.id}") Update] 
+        td(width="7%;" style="background: #ffffff;") #[a(href="/deleteuser/#{post.id}", onclick="return warningList();") Delete]
+        td(style="display:none;")
+         input.form-control.quantity(type="text", value="#{post._id}", size="8", name="id", style="font-size: 13px;padding:0px;margin:0px;height:50px;text-align:center;")
+   button.search.btn(type="submit", style="font-size:15px;") UPDATE ALL
+
 
      
   #myModal.modal.fade(role='dialog')

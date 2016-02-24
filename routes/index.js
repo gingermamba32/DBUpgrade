@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var moment = require('moment');
+var async = require('async');
+var Q = require('q');
 
 // try catch the database
 try{
@@ -1663,6 +1665,7 @@ router.get('/deleteuser/:id', function(req, res){
 	});
 });
 
+// chnage the update products
 router.get('/updateproduct/:id', function(req, res){
 	Locations.find({_id: req.params.id}, function(err, docs){
 		console.log(docs + ' User to edit');
@@ -1840,6 +1843,372 @@ router.post('/update', function(req, res){
 
     });          
 })
+
+
+router.post('/updateall', function(req,res,next){
+
+			// console.log(req.body.length);
+			// var lengthArray = req.body.barcode.length
+			// console.log(req.body.barcode.length);
+			// console.log(req.body.location[0]);
+			// console.log(req.body.id[3]);
+			// for( i=0; i<req.body.barcode.length; i++) {
+			// 	Locations.findOneAndUpdate(
+			// 		{_id: req.body.id[i]},
+			// 		{$set: {
+		 //                	_id     	       : req.body.id[i],
+		 //                    upc      	  	   : req.body.barcode[i],
+		 //                    description 	   : req.body.description[i],
+		 //                    location           : req.body.location[i],
+		 //                    quantity           : req.body.qty[i],
+		 //                    shipment 	       : req.body.po[i] 
+		 //            }}, 
+		 //            {upsert: false} , function(err, docs) {
+			// 					console.log(docs + " Updated Document");
+			                    
+			//                     var docss = [];
+			//                     docss.push(docs);
+			//                     console.log(docss + 'XXXXXXXXXXXXXXXXXXXXXX');
+			//                     // c
+			// 	                    	res.render('query');
+				                    
+			// 				});
+			// }
+
+		       console.log(req.body);
+		       var updateObj = req.body;
+
+				
+				function saveAll(docs, callback) {
+
+					var count = 0;
+					var errors = [];
+					if (docs.barcode.length === 0) {
+    					return callback();
+  					} 	
+  					else {
+					    	for( i=0; i<docs.barcode.length; i++)  {
+						    Locations.findByIdAndUpdate(
+							{_id: docs.id[i]},
+							{$set: {
+				                	_id     	       : docs.id[i],
+				                    upc      	  	   : docs.barcode[i],
+				                    description 	   : docs.description[i],
+				                    location           : docs.location[i],
+				                    quantity           : docs.qty[i],
+				                    shipment 	       : docs.po[i] 
+				            }}, 
+				            {upsert: false} , function(err, docss) {
+										//console.log(docss + " Updated Document");
+
+										count++;
+										if (err != null) {
+								          errors.push(err);
+								        }
+								        console.log('here');
+								        // once all the individual operations have completed,
+								        // callback, including any errors
+								        if (count == docs.barcode.length) {
+								        	console.log('here again');
+								          return callback(errors);
+										};
+						    
+								});
+							};
+						};
+					};
+
+				saveAll(updateObj, function(errors) {
+				 if (globalLength != undefined && globalColor != undefined && globalType != undefined) {
+					Locations.find({description: globalLength + "." + globalType + "." + globalColor + "."}).sort({shipment: 1}).exec(function(err,docs){
+					console.log( docs + ' good query all three modal');
+					res.render('query', {'nums':docs});	
+					});
+				}	
+				else if (globalUpc != '' && globalLoc != ''){
+					Locations.find({upc: globalUpc, location: globalLoc}).sort({shipment: 1}).exec(function(err,docs){
+					console.log( docs + ' good query loc + upc');
+					res.render('query', {'nums':docs});	
+					})
+				}	
+
+				else if (globalUpc != '' && globalDesc != ''){
+					Locations.find({upc: globalUpc, description: new RegExp(globalDesc)}).sort({shipment: 1}).exec(function(err,docs){
+					console.log( docs + ' good query upc + description');
+					res.render('query', {'nums':docs});	
+					})
+				}
+
+				else if (globalUpc != '' && globalQty != ''){
+					Locations.find({upc: globalUpc, quantity: globalQty}).sort({shipment: 1}).exec(function(err,docs){
+					console.log( docs + ' good query upc + qty');
+					res.render('query', {'nums':docs});	
+					})
+				}	
+
+				else if (globalUpc != '' && globalPo != ''){
+					Locations.find({upc: globalUpc, shipment: globalPo}).sort({shipment: 1}).exec(function(err,docs){
+					console.log( docs + ' good query upc + po');
+					res.render('query', {'nums':docs});	
+					})
+				}	
+
+				else if (globalDesc != '' && globalLoc != ''){
+					Locations.find({description: new RegExp(globalDesc), location: globalLoc}).sort({shipment: 1}).exec(function(err,docs){
+					console.log( docs + ' good query desc + loc');
+					res.render('query', {'nums':docs});	
+					})
+				}	
+
+				else if (globalDesc != '' && globalQty != ''){
+					Locations.find({description: new RegExp(globalDesc), quantity: globalQty}).sort({shipment: 1}).exec(function(err,docs){
+					console.log( docs + ' good query desc + qty');
+					res.render('query', {'nums':docs});	
+					})
+				}	
+
+				else if (globalDesc != '' && globalPo != ''){
+					Locations.find({description: new RegExp(globalDesc), shipment: globalPo}).sort({shipment: 1}).exec(function(err,docs){
+					console.log( docs + ' good query desc + po');
+					res.render('query', {'nums':docs});	
+					})
+				}	
+
+				else if (globalLoc != '' && globalQty != ''){
+					Locations.find({location: globalLoc, quantity: globalQty}).sort({shipment: 1}).exec(function(err,docs){
+					console.log( docs + ' good query loc + qty');
+					res.render('query', {'nums':docs});	
+					})
+				}	
+
+				else if (globalLoc != '' && globalPo != ''){
+					Locations.find({location: globalLoc, shipment: globalPo}).sort({shipment: 1}).exec(function(err,docs){
+					console.log( docs + ' good query loc + po');
+					res.render('query', {'nums':docs});	
+					})
+				}	
+
+				else if (globalQty != '' && globalPo != ''){
+					Locations.find({quantity: globalQty, shipment: globalPo}).sort({shipment: 1}).exec(function(err,docs){
+					console.log( docs + ' good query + qty + po');
+					res.render('query', {'nums':docs});	
+					})
+				}	
+
+
+				else if (globalUpc != ''){
+			    Locations.find({upc: globalUpc}).sort({shipment: 1}).exec(function(err, docs) {
+						console.log( docs + ' good query upc');
+					res.render('query', {'nums':docs});
+				 });
+				}
+
+				else if (globalDesc != ''){
+				Locations.find({description: new RegExp(globalDesc)}).sort({shipment: 1}).exec(function(err, docs) {
+						console.log( docs + ' good query desc');
+					res.render('query', { 'nums': docs });
+				 });
+				}
+
+				else if (globalLoc != '') {
+					Locations.find({location: globalLoc}).sort({shipment: 1}).exec(function(err, docs) {
+						console.log( docs + 'good query loc');
+					res.render('query', { 'nums': docs });
+				 });
+				}
+
+				else if (globalQty != ''){
+					Locations.find({quantity: globalQty}).sort({shipment: 1}).exec(function(err, docs) {
+						console.log( docs + 'good query qty');
+					res.render('query', { 'nums': docs });
+				 });
+				}
+
+				else if (globalPo != ''){
+					Locations.find({shipment: globalPo}).sort({quantity: 1}).exec(function(err, docs) {
+						console.log( docs + ' good query po');
+					res.render('query', {'nums':docs});
+				 });
+				}
+
+				else if (globalLength != undefined && globalType != undefined){
+					Locations.find({description: new RegExp("^" + globalLength + "." + globalType)}).sort({shipment: 1}).exec(function(err,docs){
+						console.log( docs + ' good query length type');
+						res.render('query', {'nums':docs});
+					})
+				}
+				else if (globalType != undefined && globalColor != undefined) {
+					Locations.find({description: new RegExp(globalType + "\." + globalColor + "\.$")}).sort({shipment: 1}).exec(function(err,docs){
+						console.log( docs + ' good query type + color');
+						res.render('query', {'nums':docs});
+					})
+				}
+
+				else if (globalLength != undefined && globalColor != undefined){
+					Locations.find({description: new RegExp("^"+globalLength + ".*" + globalColor + "\.$")}).sort({shipment: 1}).exec(function(err, docs){
+						console.log( docs + ' good query length color');
+						res.render('query', {'nums': docs});
+					})
+				}
+				else if (globalLength != undefined){
+					Locations.find({description: new RegExp("^" + globalLength)}).sort({shipment: 1}).exec(function(err,docs){
+						console.log( docs + ' good query length');
+						res.render('query', {'nums':docs});
+					})
+
+				}
+				else if (globalType != undefined){
+					Locations.find({description: new RegExp(globalType)}).sort({shipment: 1}).exec(function(err,docs){
+						console.log( docs + ' good query type');
+						res.render('query', {'nums': docs});
+					})
+				}
+
+				else if (globalColor != undefined){
+					Locations.find({description: new RegExp(globalColor)}).sort({shipment: 1}).exec(function(err, docs){
+						console.log( docs + ' good query color');
+						res.render('query', {'nums': docs});
+					})
+				}
+
+				});
+
+			// var query = function (cb) {
+			//   tournamentsModel.findOneAndUpdate({remoteId: item.id}, item, {upsert: true}).exec(function (err, model) {
+			//     cb(err, model);
+			//   });
+			// };
+			// queries.push(query);	
+
+			
+				// var locations = req.body;
+				// console.log(typeof req.body);
+				// //console.log(req.body.length);
+			 //    async.forEachOf(locations, function(location, key, callback) {
+				//   	console.log(location[0] + 'This is the ID'); 
+				//   	console.log(typeof location);
+				//   	console.log(location.length);
+				//   	console.log(location.id);
+			 //  //for( i=0; i<req.body.barcode.length; i++) {
+			 //    Locations.findOneAndUpdate({_id: location.id}, 
+			 //    	{$set: {
+		  //               	_id     	       : location.id,
+		  //                   upc      	  	   : location.barcode,
+		  //                   description 	   : location.description,
+		  //                   location           : location.location,
+		  //                   quantity           : location.quantity,
+		  //                   shipment 	       : location.po 
+		  //           }}, 
+		  //           {upsert: false}, function(err, docs) {
+			 //      		// res.render('query', {'nums': docs});
+			 //      		console.log('here');
+			 //      		//console.log(location+'TEST');
+			 //      		//console.log(location.quantity)
+			 //      		callback();
+			 //      		//console.log(location+'TEST');
+				// 	  });
+				// },  function(err) {
+				// 	  	    if (err) console.error(err.message);
+				// 	  	    //console.log(locations);
+				// 	  		//Locations.save();
+					      
+				// 	      res.render('query', {'nums':location});
+				// 	});
+			
+		 
+			
+		
+
+		// var i =0;
+		// async.each(updateArray, function(itemInArray, next){
+		// 	itemInArray.position = i;
+		// Locations.findOneAndUpdate(
+		// 	{_id: itemInArray},
+		// 	{$set: {
+  //               	_id     	       : req.body.id[i],
+  //                   upc      	  	   : req.body.barcode[i],
+  //                   description 	   : req.body.description[i],
+  //                   location           : req.body.location[i],
+  //                   quantity           : req.body.qty[i],
+  //                   shipment 	       : req.body.po[i] 
+  //           }}, 
+  //           {upsert: false} , function(err, docs) {
+  //           			console.log(err);
+		// 				console.log(docs + " Updated Document");
+		// 				res.render('query', {'nums': docs});
+		// 			});
+
+
+		// })
+
+
+
+
+
+})
+
+	// var promises = [];
+	// 	docs.forEach(function(doc) {
+	// 	  promise = Q(Locations.find({ _id: req.body.id }).exec())
+	// 	    .then(
+	// 	      function(update) {
+	// 	          if (like.length == 0)
+	// 	                post.hasLiked = false;
+	// 	          else
+	// 	                post.hasLiked = true;
+	// 	          }
+	// 	      }  
+	// 	      ,function(err) {
+	// 	         //handle error
+	// 	    });
+	// 	})
+
+	// 	Q.all(promises)
+	// 	  .then(function() {
+	// 	      return res.jsonp(posts);
+	// 	  });
+
+
+
+
+
+
+
+
+	// console.log(req.body);
+	// var lengthArray = req.body.barcode.length
+	// console.log(req.body.barcode.length);
+	// console.log(req.body.location[0]);
+	// console.log(req.body.id[3]);
+	// for( i=0; i<req.body.barcode.length; i++) {
+	// 	Locations.findOneAndUpdate(
+	// 		{_id: req.body.id[i]},
+	// 		{$set: {
+ //                	_id     	       : req.body.id[i],
+ //                    upc      	  	   : req.body.barcode[i],
+ //                    description 	   : req.body.description[i],
+ //                    location           : req.body.location[i],
+ //                    quantity           : req.body.qty[i],
+ //                    shipment 	       : req.body.po[i] 
+ //            }}, 
+ //            {upsert: false} , function(err, doc) {
+	// 					console.log(docs + " Updated Document");
+	//                     var docs = [];
+	//                     docs.push(doc);
+	// 	                    if (docs.length == lengthArray){
+	// 	                    	res.render('query', {'nums': docs});
+	// 	                    }
+	// 				});
+
+
+ //        }
+        
+
+	
+//});
+
+
+
 
 
 // router.post('/location', function( req, res, next ){
