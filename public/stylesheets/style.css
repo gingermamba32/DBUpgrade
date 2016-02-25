@@ -408,3 +408,10 @@ input.checkbox {
     
 }
 
+
+@media print{
+  .print {
+    display:none;
+  }
+}
+

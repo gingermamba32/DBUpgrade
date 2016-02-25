@@ -62,8 +62,8 @@ block content
         td(width="10%;")
          input.form-control.poNum(type="text", value="#{post.shipment}", size="8", name="po", style="font-size: 13px;padding:0px; margin:0px;height:50px;text-align:center;")
         td(width="19%;" style="background: #ffffff;")= post.box 
-        td(width="7%;" style="background: #ffffff;") #[a(href="/updateproduct/#{post.id}") Update] 
-        td(width="7%;" style="background: #ffffff;") #[a(href="/deleteuser/#{post.id}", onclick="return warningList();") Delete]
+        td.print(width="7%;" style="background: #ffffff;") #[a(href="/updateproduct/#{post.id}") Update] 
+        td.print(width="7%;" style="background: #ffffff;") #[a(href="/deleteuser/#{post.id}", onclick="return warningList();") Delete]
         td(style="display:none;")
          input.form-control.quantity(type="text", value="#{post._id}", size="8", name="id", style="font-size: 13px;padding:0px;margin:0px;height:50px;text-align:center;")
    button.search.btn(type="submit", style="font-size:15px;") UPDATE ALL
