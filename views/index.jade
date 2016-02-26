@@ -325,10 +325,11 @@ block content
                 {duplicateUPC: 702795850142, upc1:702795850142, upc1ProductID: '22.SI.33.', upc2: 600346750869, upc2ProductID: '18.KLS.O-1B_TEAL.'},
                 {duplicateUPC: 702795850159, upc1:702795850159, upc1ProductID: '22.SI.60.', upc2: 600346750814, upc2ProductID: '18.S-TAPE.O-4_30_613.'},
                 {duplicateUPC: 702795850166, upc1:702795850166, upc1ProductID: '22.SI.600.', upc2: 600346750906, upc2ProductID: '18.S-TAPE.O-2_27A.'},
-                {duplicateUPC: 702795850173, upc1:702795850173, upc1ProductID: '22.SI.613.', upc2: 600346750838, upc2ProductID: '18.S-TAPE.O-1B_TEAL.'}
-              ]
+                {duplicateUPC: 702795850173, upc1:702795850173, upc1ProductID: '22.SI.613.', upc2: 600346750838, upc2ProductID: '18.S-TAPE.O-1B_TEAL.'},
+                {upc: 702795849269}
+              ];
 
-              
+              //need to include all duplcates as well
 
               $('#check1').keypress(function(e){
                 if (e.which == 13){
@@ -363,10 +364,16 @@ block content
                         $('input[name=quantity1]').click().focus();
                       });
                     }
-                  //-   else{
-                  //-     $('input[name=quantity1]').click().focus();
-                  //- }
-                  };
+
+                        //- else if ( duplicates[i].upc == searchUPC ){
+                        //-     console.log('here');
+                        //-     $('input[name=quantity1]').click().focus();
+                        //-   }
+                        //- else if ( (i == duplicates.length-1) && (duplicates[i].upc != searchUPC )){
+                          
+                        //-   alert(searchUPC + ' DOES NOT EXIST!');
+                        //-   }
+                  };  //for statement
 
                   } //end if
                 });  //end keydown
@@ -405,6 +412,14 @@ block content
                       });   
 
                     }
+                      //- else if ( duplicates[i].upc == searchUPC ){
+                      //-       console.log('here');
+                      //-       $('input[name=quantity1]').click().focus();
+                      //-     }
+                      //-   else if ( (i == duplicates.length-1) && (duplicates[i].upc != searchUPC )){
+                          
+                      //-     alert(searchUPC + ' DOES NOT EXIST!');
+                      //-     }
                   };
 
                   }
@@ -443,6 +458,14 @@ block content
                       });   
 
                     }
+                    //- else if ( duplicates[i].upc == searchUPC ){
+                    //-         console.log('here');
+                    //-         $('input[name=quantity1]').click().focus();
+                    //-       }
+                    //-     else if ( (i == duplicates.length-1) && (duplicates[i].upc != searchUPC )){
+                          
+                    //-       alert(searchUPC + ' DOES NOT EXIST!');
+                    //-       }
                   };
 
                   }
@@ -482,6 +505,14 @@ block content
                       });   
 
                     }
+                    //- else if ( duplicates[i].upc == searchUPC ){
+                    //-         console.log('here');
+                    //-         $('input[name=quantity1]').click().focus();
+                    //-       }
+                    //-     else if ( (i == duplicates.length-1) && (duplicates[i].upc != searchUPC )){
+                          
+                    //-       alert(searchUPC + ' DOES NOT EXIST!');
+                    //-       }
                   };
 
                   }
@@ -521,6 +552,14 @@ block content
                       });   
 
                     }
+                    //- else if ( duplicates[i].upc == searchUPC ){
+                    //-         console.log('here');
+                    //-         $('input[name=quantity1]').click().focus();
+                    //-       }
+                    //-     else if ( (i == duplicates.length-1) && (duplicates[i].upc != searchUPC )){
+                          
+                    //-       alert(searchUPC + ' DOES NOT EXIST!');
+                    //-       }
                   };
 
                   }
@@ -559,6 +598,14 @@ block content
                       });   
 
                     }
+                    //- else if ( duplicates[i].upc == searchUPC ){
+                    //-         console.log('here');
+                    //-         $('input[name=quantity1]').click().focus();
+                    //-       }
+                    //-     else if ( (i == duplicates.length-1) && (duplicates[i].upc != searchUPC )){
+                          
+                    //-       alert(searchUPC + ' DOES NOT EXIST!');
+                    //-       }
                   };
 
                   }
@@ -597,6 +644,14 @@ block content
                       });   
 
                     }
+                    //- else if ( duplicates[i].upc == searchUPC ){
+                    //-         console.log('here');
+                    //-         $('input[name=quantity1]').click().focus();
+                    //-       }
+                    //-     else if ( (i == duplicates.length-1) && (duplicates[i].upc != searchUPC )){
+                          
+                    //-       alert(searchUPC + ' DOES NOT EXIST!');
+                    //-       }
                   };
 
                   }
@@ -635,6 +690,14 @@ block content
                       });   
 
                     }
+                    //- else if ( duplicates[i].upc == searchUPC ){
+                    //-         console.log('here');
+                    //-         $('input[name=quantity1]').click().focus();
+                    //-       }
+                    //-     else if ( (i == duplicates.length-1) && (duplicates[i].upc != searchUPC )){
+                          
+                    //-       alert(searchUPC + ' DOES NOT EXIST!');
+                    //-       }
                   };
 
                   }
