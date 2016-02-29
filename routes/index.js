@@ -1341,29 +1341,31 @@ router.post('/locateThree', function( req, res, next ){
 // Full search feature....upc is unique and can only have one search function
 router.post('/query', function(req,res,next){
 	
-	console.log(req.body.description);
-	console.log(req.body.location);
-	console.log(req.body.qty);
-	console.log(req.body.barcode);
-	console.log(req.body.po);
+	// console.log(req.body.description);
+	// console.log(req.body.location);
+	// console.log(req.body.qty);
+	// console.log(req.body.barcode);
+	// console.log(req.body.po);
 
 	globalUpc = req.body.barcode;
 	globalDesc = (req.body.description).toUpperCase();
-	globalLoc = req.body.location;
+	globalLoc = (req.body.location).toUpperCase();
 	globalQty = req.body.qty;
-	globalPo = req.body.po;
+	globalPo = (req.body.po).toUpperCase();
 	globalColor = undefined;
 	globalType = undefined;
 	globalLength = undefined;
 
-	console.log(globalUpc); 
-	console.log(globalDesc); 
-	console.log(globalLoc + ' this is the global location now');
-	console.log(globalQty);
-	console.log(globalPo);
+	// console.log(globalUpc); 
+	// console.log(globalDesc); 
+	// console.log(globalLoc + ' this is the global location now');
+	// console.log(globalQty);
+	// console.log(globalPo);
+	// console.log((req.body.location).toUpperCase() + ' TETETETETETETEET');
+	// console.log((req.body.po).toUpperCase())
 
 	if (req.body.barcode != '' && req.body.location != ''){
-		Locations.find({upc: req.body.barcode, location: req.body.location}).sort({shipment: 1}).exec(function(err,docs){
+		Locations.find({upc: req.body.barcode, location: (req.body.location).toUpperCase()}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
 		res.render('query', {'nums':docs});	
 		})
@@ -1384,7 +1386,7 @@ router.post('/query', function(req,res,next){
 	}	
 
 	else if (req.body.barcode != '' && req.body.po != ''){
-		Locations.find({upc: req.body.barcode, shipment: req.body.po}).sort({shipment: 1}).exec(function(err,docs){
+		Locations.find({upc: req.body.barcode, shipment: (req.body.po).toUpperCase()}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
 		res.render('query', {'nums':docs});	
 		})
@@ -1412,21 +1414,21 @@ router.post('/query', function(req,res,next){
 	}	
 
 	else if (req.body.location != '' && req.body.qty != ''){
-		Locations.find({location: req.body.location, quantity: req.body.qty}).sort({shipment: 1}).exec(function(err,docs){
+		Locations.find({location: (req.body.location).toUpperCase(), quantity: req.body.qty}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
 		res.render('query', {'nums':docs});	
 		})
 	}	
 
 	else if (req.body.location != '' && req.body.po != ''){
-		Locations.find({location: req.body.location, shipment: req.body.po}).sort({shipment: 1}).exec(function(err,docs){
+		Locations.find({location: (req.body.location).toUpperCase(), shipment: (req.body.po).toUpperCase()}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
 		res.render('query', {'nums':docs});	
 		})
 	}	
 
 	else if (req.body.qty != '' && req.body.po != ''){
-		Locations.find({quantity: req.body.qty, shipment: req.body.po}).sort({shipment: 1}).exec(function(err,docs){
+		Locations.find({quantity: req.body.qty, shipment: (req.body.po).toUpperCase()}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
 		res.render('query', {'nums':docs});	
 		})
@@ -1460,7 +1462,7 @@ router.post('/query', function(req,res,next){
 	}
 	// ******************
 	else if (req.body.location != '') {
-		Locations.find({location: req.body.location}).sort({shipment: 1}).exec(function(err, docs) {
+		Locations.find({location: (req.body.location).toUpperCase()}).sort({shipment: 1}).exec(function(err, docs) {
 			console.log( docs + 'good query');
 		res.render('query', { 'nums': docs });
 	 });
@@ -1474,7 +1476,7 @@ router.post('/query', function(req,res,next){
 	}
 
 	else if (req.body.po != ''){
-		Locations.find({shipment: req.body.po}).sort({quantity: 1}).exec(function(err, docs) {
+		Locations.find({shipment: (req.body.po).toUpperCase()}).sort({quantity: 1}).exec(function(err, docs) {
 			console.log( docs + ' good query');
 		res.render('query', {'nums':docs});
 	 });
@@ -1846,34 +1848,6 @@ router.post('/update', function(req, res){
 
 
 router.post('/updateall', function(req,res,next){
-
-			// console.log(req.body.length);
-			// var lengthArray = req.body.barcode.length
-			// console.log(req.body.barcode.length);
-			// console.log(req.body.location[0]);
-			// console.log(req.body.id[3]);
-			// for( i=0; i<req.body.barcode.length; i++) {
-			// 	Locations.findOneAndUpdate(
-			// 		{_id: req.body.id[i]},
-			// 		{$set: {
-		 //                	_id     	       : req.body.id[i],
-		 //                    upc      	  	   : req.body.barcode[i],
-		 //                    description 	   : req.body.description[i],
-		 //                    location           : req.body.location[i],
-		 //                    quantity           : req.body.qty[i],
-		 //                    shipment 	       : req.body.po[i] 
-		 //            }}, 
-		 //            {upsert: false} , function(err, docs) {
-			// 					console.log(docs + " Updated Document");
-			                    
-			//                     var docss = [];
-			//                     docss.push(docs);
-			//                     console.log(docss + 'XXXXXXXXXXXXXXXXXXXXXX');
-			//                     // c
-			// 	                    	res.render('query');
-				                    
-			// 				});
-			// }
 
 		       console.log(req.body);
 		       var updateObj = req.body;
