@@ -2269,16 +2269,33 @@ router.post('/excel', function(req, res, next) {
 	      .on('data', function (data) {
 	        console.log('YAY, just the data I wanted!', data);
 	        console.log(data[0] + " Only the first column");
-	        
-	        // Save the data to mongodb
 
+	        // Save the data to mongodb
+	      //   	var newLocation = new Locations ({
+							// 	location   : req.body.bin11,
+							// 	upc        : docs.upc,
+							// 	upcAlias   : docs.upcAlias,
+							// 	upcActual  : req.body.upc6,
+							// 	description: docs.description,
+							// 	shipment   : req.body.shipment,
+							// 	quantity   : req.body.quantity6,
+							// 	box        : moment(num8).format('YYYY-MM-DD HH:mm:ss')
+							// });
 
 
 	      });
 	  });
 	busboy.on('finish', function() {
 	    console.log('Done parsing form!');
-	    res.render('upc');
+	    // Display all files uploa
+	    fs.readdir(__dirname + '/../public/uploads', function(err, data){
+		console.log(data);
+		if (err) {
+		      res.status(500).send(err);
+		      return;
+		  }
+    	res.render('upc', {"files": data});
+	});
 	    
 	});
 
