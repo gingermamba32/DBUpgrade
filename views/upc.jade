@@ -41,6 +41,25 @@ block content
    h5(style="text-align:left; color:black;") 3.  Values must be entered for all fields
 
 
+
+
+
+
+  h1(id="header", style="padding-top: 75px;") TESTING IMPORT TEMPLATE: Notes will be placed below
+  form(method="POST", action="/excel", name="excel", enctype='multipart/form-data')
+   h2(style="padding-top:10px;") Import UPCs
+    input(type='file', name='excel', required)
+    input(type='submit', value='Upload')
+
+  ul
+   for file in files
+    li
+     p= file
+
+
+  h1(id="header", style="padding-top: 75px;") BELOW YOU CAN DOWNLOAD THE SHEET YOU WILL NEED TO UPLOAD
+
+
   script.
    $(document).ready(function() {
    	$('input[name=upc]').focus();

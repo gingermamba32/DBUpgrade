@@ -4,6 +4,10 @@ var mongoose = require('mongoose');
 var moment = require('moment');
 var async = require('async');
 var Q = require('q');
+var csv = require('fast-csv');
+var fs = require('fs');
+var Busboy = require('busboy');
+var path = require('path');
 
 // try catch the database
 try{
@@ -82,8 +86,15 @@ router.get('/search', function(req, res, next) {
 })
 
 router.get('/addUpc', function(req, res, next) {
-	res.render('upc');
-})
+	fs.readdir(__dirname + '/../public/uploads', function(err, data){
+		console.log(data);
+		if (err) {
+		      res.status(500).send(err);
+		      return;
+		  }
+    	res.render('upc', {"files": data});
+	});
+});
 
 router.get('/invalidInventory', function(req, res, next) {
 	res.render('invalid');
@@ -2239,5 +2250,49 @@ router.post('/updateall', function(req,res,next){
 
 
 // });
+
+
+
+
+// Upload excel sheet
+router.post('/excel', function(req, res, next) {
+	console.log(req.body + "I AM BODY");
+	console.log(req.body.excel);
+    var busboy = new Busboy({ headers: req.headers });
+    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+    	// Save File
+    	var fstream = fs.createWriteStream('./public/uploads/' + filename);
+        file.pipe(fstream);
+
+    	// Read File
+	    file.pipe(csv())
+	      .on('data', function (data) {
+	        console.log('YAY, just the data I wanted!', data);
+	        console.log(data[0] + " Only the first column");
+	        
+	        // Save the data to mongodb
+
+
+
+	      });
+	  });
+	busboy.on('finish', function() {
+	    console.log('Done parsing form!');
+	    res.render('upc');
+	    
+	});
+
+    req.pipe(busboy);
+
+});
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
