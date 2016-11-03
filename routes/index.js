@@ -2256,7 +2256,6 @@ router.post('/updateall', function(req,res,next){
 
 // Upload excel sheet
 router.post('/excel', function(req, res, next) {
-	console.log(req.body + "I AM BODY");
 	console.log(req.body.excel);
     var busboy = new Busboy({ headers: req.headers });
     busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
@@ -2265,22 +2264,40 @@ router.post('/excel', function(req, res, next) {
         file.pipe(fstream);
 
     	// Read File
-	    file.pipe(csv())
+	    file.pipe(csv({headers: true}))
 	      .on('data', function (data) {
 	        console.log('YAY, just the data I wanted!', data);
 	        console.log(data[0] + " Only the first column");
+	        console.log(data['upc'] + " Only the first column");
+
+	        var excel_upc = data['upc'];
+	        var excel_description = data['description'];
 
 	        // Save the data to mongodb
-	      //   	var newLocation = new Locations ({
-							// 	location   : req.body.bin11,
-							// 	upc        : docs.upc,
-							// 	upcAlias   : docs.upcAlias,
-							// 	upcActual  : req.body.upc6,
-							// 	description: docs.description,
-							// 	shipment   : req.body.shipment,
-							// 	quantity   : req.body.quantity6,
-							// 	box        : moment(num8).format('YYYY-MM-DD HH:mm:ss')
-							// });
+	        if (excel_upc != '') {
+
+
+	        	// Need to search for if UPC exists
+	        	// ************************
+
+				var newLocation = new Locations ({
+							location   : 'DO NOT DELETE',
+							upc        : excel_upc,
+							upcAlias   : excel_upc,
+							upcActual  : excel_upc,
+							description: excel_description,
+							shipment   : 'DO NOT DELETE',
+							quantity   : 0,
+							box        : moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
+						});
+						console.log(newLocation);
+						newLocation.save(function(err, callback){
+							console.log("upc saved!!");
+						})
+			
+	        }
+	        else { console.log("blank row!!!!")}
+						
 
 
 	      });
