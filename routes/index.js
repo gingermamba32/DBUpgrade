@@ -68,6 +68,31 @@ var locationsSchema = new mongoose.Schema({
 
 var Locations = mongoose.model('locations', locationsSchema);
 
+
+
+// db schema for the radio collection
+var radiosSchema = new mongoose.Schema({ 
+	radio: {
+		type: String,
+		default: ''
+	}	,
+	type: {
+		type: String,
+		default: ''
+	},
+    created: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+var Radios = mongoose.model('radios', radiosSchema);
+
+
+
+
+
+
 // buttons page
 router.get('/', function(req, res, next) {
 	res.render('home');
@@ -82,7 +107,10 @@ router.get('/scan', function(req, res, next) {
 
 
 router.get('/search', function(req, res, next) {
-	res.render('search');
+		Radios.find().exec(function(err,docs){
+						console.log( docs + ' good query length');
+						res.render('search', {'nums':docs});
+		});
 })
 
 router.get('/addUpc', function(req, res, next) {
@@ -2318,6 +2346,30 @@ router.post('/excel', function(req, res, next) {
 
     req.pipe(busboy);
 
+});
+
+
+
+
+// Add Radio Button to the search page
+router.post('/radioAdd', function(req, res,next){
+	console.log(req.body.radio);
+	console.log(req.body.searchtype);
+	var newRadio = new Radios ({
+		radio   : req.body.radio,
+		type    : req.body.searchType
+	});
+	console.log(newRadio);
+
+	newRadio.save(function(err, callback){
+		console.log("upc saved!!");
+		// Display the radios db items on the search page
+		Radios.find().exec(function(err,docs){
+						console.log( docs + ' good query length');
+						res.render('search', {'nums':docs});
+		});
+
+	});
 });
 
 

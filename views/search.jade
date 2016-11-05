@@ -47,6 +47,27 @@ block content
    h5(style="text-align:left; color:black;") 3.  Currently you may only search by #[strong two] input fields at once
    h5(style="text-align:left; color:black;") 4.  Let me know if there are any products with no upcs assigned
 
+  div(style="width:700px; margin:0 auto")
+   h5(style="color:black;") List Out the Search Buttons
+   if (nums.length)
+    each post, i in nums
+     h5=post.radio
+
+  
+
+  .submit-content
+   form.proposal-form.br(method="Post", action="/radioAdd")
+    h2.sub Add Search Button
+    h4 Input Your Product Search Button
+    input(type="text", placeholder="New Search Button!", size="40", name="radio" )
+    label Select Button Type
+    select.form-control( name="searchtype")
+     option Length
+     option Style
+     option Color
+     option Tool
+    button.btn.invSub(type="submit") Submit New Search
+
 
 
   #myModal.modal.fade(role='dialog')
@@ -388,6 +409,11 @@ block content
              label.btn.btn-primary(style="font-size: 10px;")
               input(type='radio', name='type', value='RO', style="vertical-align: middle")
               | ROGUE
+             //- if (nums.length)
+             //-  each post, i in nums
+             //-   label.btn.btn-primary(style="font-size: 10px;")
+             //-    input(type='radio', name='type', value='#{post.radio}', style="vertical-align: middle")
+             //-    | post.radio
              br
              br
              br
