@@ -2268,10 +2268,10 @@ router.post('/excel', function(req, res, next) {
 	      .on('data', function (data) {
 	        console.log('YAY, just the data I wanted!', data);
 	        console.log(data[0] + " Only the first column");
-	        console.log(data['upc'] + " Only the first column");
+	        console.log(data['UPC'] + " Only the first column");
 
-	        var excel_upc = data['upc'];
-	        var excel_description = data['description'];
+	        var excel_upc = data['UPC'];
+	        var excel_description = data['DESCRIPTION'];
 
 	        // Save the data to mongodb
 	        if (excel_upc != '') {
