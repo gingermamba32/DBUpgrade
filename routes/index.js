@@ -2357,7 +2357,7 @@ router.post('/radioAdd', function(req, res,next){
 	console.log(req.body.searchtype);
 	var newRadio = new Radios ({
 		radio   : req.body.radio,
-		type    : req.body.searchType
+		type    : req.body.searchtype
 	});
 	console.log(newRadio);
 
@@ -2369,6 +2369,16 @@ router.post('/radioAdd', function(req, res,next){
 						res.render('search', {'nums':docs});
 		});
 
+	});
+});
+
+// Delete Radio Buttons
+router.get('/deletebutton/:id', function(req, res){
+	Radios.remove({ _id: req.params.id }, function(err, docs){
+		Radios.find().exec(function(err,docs){
+			console.log( docs + ' good query length');
+			res.render('search', {'nums':docs});
+		});
 	});
 });
 
