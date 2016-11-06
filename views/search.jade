@@ -37,10 +37,8 @@ block content
    h5(style="text-align:left; color:black;") 4.  Let me know if there are any products with no upcs assigned
 
   div(style="width:700px; margin:0 auto")
-   h5(style="color:black;") Adding Radio Buttons:
-   h5(style="text-align:left; color:black;") 1.  When typing into the description field, remember to add the PERIODS
-   h5(style="text-align:left; color:black;")
-    strong &nbsp;&nbsp;&nbsp;&nbsp; Length . type . color .
+   h5(style="color:black;") Adding Search Buttons:
+   h5(style="text-align:left; color:black;") 1.  Decide if new upcs will need a new color or style
    h5(style="text-align:left; color:black;") &nbsp;&nbsp;&nbsp;&nbsp; EX: #[strong 18.SI.1.] &rarr; only the color 1
    h5(style="text-align:left; color:black;") &nbsp;&nbsp;&nbsp;&nbsp; EX: #[strong 18.SI.1] &rarr; colors 1,10,1001,12 etc.
    h5(style="text-align:left; color:black;") 2.  Clicking on the #[strong Description] label opens a search modal
@@ -87,90 +85,24 @@ block content
             h4.modal-title Search Product IDs
           .modal-body
             form(role='form', id='radio1', method="Post", action="/radioSearch", name="Radio",style="margin: 0 auto; width: 800px;")
-             h7(style="float:left; padding-right:5px; padding-top: 5px;font-size: 15px; color: black; font-weight: 700;") Length:
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='length', value='12', style="vertical-align: middle; padding-top:5px;")
-              | 12"
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='length', value='14', style="vertical-align: middle; padding-top:5px;")
-              | 14"
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='length', value='16', style="vertical-align: middle; padding-top:5px;")
-              | 16"
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='length', value='18', style="vertical-align: middle;padding-top:5px;")
-              | 18"
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='length', value='20', style="vertical-align: middle;padding-top:5px;")
-              | 20"
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='length', value='22', style="vertical-align: middle;padding-top:5px;")
-              | 22"
+             h7(style="float:left; padding-right:5px; padding-top: 5px;font-size: 15px; color: black; font-weight: 700;") Length: &nbsp;&nbsp;
+             div(style="width: 700px;")
+              each post, i in nums
+               if post.type == "Length"
+                label.btn.btn-primary(style="font-size: 10px; float:center;")
+                 input(type='radio', name='length', value='#{post.radio}', style="vertical-align: middle")
+                 | #[span=post.radio]
              br
              br
              br
              br
-             h7(style="float: left; padding-right:5px; padding-top: 5px;font-size: 15px; color: black; font-weight: 700;") Type:
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='S-TAPE', style="vertical-align: middle")
-              | S-TAPE
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='SI', style="vertical-align: middle")
-              | SI
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='IBODY', style="vertical-align: middle")
-              | IBODY
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='ICURLY', style="vertical-align: middle")
-              | ICURLY
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='KLS', style="vertical-align: middle")
-              | KLS
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='KLBODY', style="vertical-align: middle")
-              | KLBODY
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='KLCURLY', style="vertical-align: middle")
-              | KLCURLY
-             br
-             br
-             br
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='VA-SYNTH', style="vertical-align: middle")
-              | VA-SYNTH
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='VA16-HUMAN', style="vertical-align: middle")
-              | VA16-HUMAN
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='VA20-HUMAN', style="vertical-align: middle")
-              | VA20-HUMAN
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='HILO-SYNTH', style="vertical-align: middle")
-              | HILO-SYNTH
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='HILO-HUMAN', style="vertical-align: middle")
-              | HILO-HUMAN
-             br
-             br
-             br
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='CS', style="vertical-align: middle")
-              | CS   
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='CSD', style="vertical-align: middle")
-              | CSD
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='HS', style="vertical-align: middle")
-              | HS 
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='HSD', style="vertical-align: middle")
-              | HSD 
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='SAB', style="vertical-align: middle")
-              | SAB
-             label.btn.btn-primary(style="font-size: 10px;")
-              input(type='radio', name='type', value='SSB', style="vertical-align: middle")
-              | SSB
+             h7(style="float: left; padding-right:5px; padding-top: 5px;font-size: 15px; color: black; font-weight: 700;") Style: &nbsp;&nbsp;
+             div(style="width: 700px;")
+             each post, i in nums
+              if post.type == "Style"
+               label.btn.btn-primary(style="font-size: 10px;")
+                input(type='radio', name='type', value='#{post.radio}', style="vertical-align: middle")
+                | #[span=post.radio]
              br
              br
              br 
@@ -353,7 +285,7 @@ block content
              br
              br
              br
-             h7(style="float: left; padding-right:5px; padding-top: 5px;font-size: 15px; color: black; font-weight: 700;") Individual Products:
+             h7(style="float: left; padding-right:5px; padding-top: 5px;font-size: 15px; color: black; font-weight: 700;") Tools:
              label.btn.btn-primary(style="font-size: 10px;")
               input(type='radio', name='type', value='SWATCH', style="vertical-align: middle")
               | SWATCH         
