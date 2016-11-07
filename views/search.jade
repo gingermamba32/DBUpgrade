@@ -47,10 +47,10 @@ block content
 
   .submit-content
    form.proposal-form.br(method="Post", action="/radioAdd")
-    h2.sub(style="margin: 0; padding-top: 10px; padding-bottom: 10px;") Add Search Button
+    h2.sub(style="margin: 0; padding-top: 10px; padding-bottom: 30px;") Add Search Button
     input(type="text", placeholder="Input search button term here!", size="40", name="radio", style="font-size: 22px; margin-bottom: 0px;" )
-    label(style="padding-top: 20px; font-size: 22px; color: ##465058;") Select Button Type
-    select.form-control(name="searchtype")
+    label(style="padding-top: 20px; font-size: 22px; color: #465058;") Select Button Type
+    select.form-control(name="searchtype" style="font-size: 22px; color: #222;")
      option Length
      option Style
      option Color
@@ -64,43 +64,36 @@ block content
   
   
   h5(style="color:black;padding-top: 50px;") List Out the Search Buttons
+  .border.row(style="width: 90%; margin: 0 auto; text-align: center; font-size: 18px;")
+   .border.col-md-3(style="border: 1px solid #ddd; color:#465058; padding-left: 0px; padding-right: 0px;") #[b LENGTH]
+    each post, i in nums
+     if (post.type == 'Length')
+      div(style="border: 1px solid #ddd;")
+       p(style="margin-bottom: 0px; padding-bottom: 0px; font-weight: 700;")=post.radio
+       a(href="/deletebutton/#{post.id}", onclick="return warningList();")
+        button.btn(style="font-size: 15px; background-color: red;") Delete
+   .border.col-md-3(style="border: 1px solid #ddd; color:#465058; padding-left: 0px; padding-right: 0px;") #[b STYLE]
+    each post, i in nums
+     if (post.type == 'Style')
+      div(style="border: 1px solid #ddd;")
+       p(style="margin-bottom: 0px; padding-bottom: 0px; font-weight: 700;")=post.radio
+       a(href="/deletebutton/#{post.id}", onclick="return warningList();")
+        button.btn(style="font-size: 15px; background-color: red;") Delete
 
-  table.table-striped.table-bordered.table-responsive(width="90%", align="center", style="font-size:18px; color:black; padding-bottom: 35px;")
-    tr(style="margin: 0 auto; background: #52bab3;")
-     td #[b LENGTH]
-     td #[a(data-toggle="modal" data-target="#myModal", style="text-decoration:none; cursor: pointer; color:black; font-weight: 600;") STYLE]
-     td #[b COLOR]
-     td #[b TOOL]
-    tr
-     td(width="25%; vertical-align: top; display: table-cell; padding; 0px;")
-      each post, i in nums
-       if (post.type == 'Length')
-        div(style="border: 1px solid #ddd;")
-         p(style="margin-bottom: 0px; padding-bottom: 0px; font-weight: 700;")=post.radio
-         a(href="/deletebutton/#{post.id}", onclick="return warningList();")
-          button.btn(style="font-size: 15px; background-color: red;") Delete
-     td(width="25%;")
-      each post, i in nums
-       if (post.type == 'Style')
-        div(style="border: 1px solid #ddd;")
-         p(style="margin-bottom: 0px; padding-bottom: 0px; font-weight: 700;")=post.radio
-         a(href="/deletebutton/#{post.id}", onclick="return warningList();")
-          button.btn(style="font-size: 15px; background-color: red;") Delete
-     td(width="25%;")
-      each post, i in nums
-       if (post.type == 'Color')
-        div(style="border: 1px solid #ddd;")
-         p(style="margin-bottom: 0px; padding-bottom: 0px; font-weight: 700;")=post.radio
-         a(href="/deletebutton/#{post.id}", onclick="return warningList();")
-          button.btn(style="font-size: 15px; background-color: red;") Delete
-     td(width="25%;")
-      each post, i in nums
-       if (post.type == 'Tool')
-        div(style="border: 1px solid #ddd;")
-         p(style="margin-bottom: 0px; padding-bottom: 0px; font-weight: 700;")=post.radio
-         a(href="/deletebutton/#{post.id}", onclick="return warningList();")
-          button.btn(style="font-size: 15px; background-color: red;") Delete
-
+   .border.col-md-3(style="border: 1px solid #ddd; color:#465058; padding-left: 0px; padding-right: 0px;") #[b COLOR]
+    each post, i in nums
+     if (post.type == 'Color')
+      div(style="border: 1px solid #ddd;")
+       p(style="margin-bottom: 0px; padding-bottom: 0px; font-weight: 700;")=post.radio
+       a(href="/deletebutton/#{post.id}", onclick="return warningList();")
+        button.btn(style="font-size: 15px; background-color: red;") Delete
+   .border.col-md-3(style="border: 1px solid #ddd; color:#465058; padding-left: 0px; padding-right: 0px;") #[b TOOL]
+    each post, i in nums
+     if (post.type == 'Tool')
+      div(style="border: 1px solid #ddd;")
+       p(style="margin-bottom: 0px; padding-bottom: 0px; font-weight: 700;")=post.radio
+       a(href="/deletebutton/#{post.id}", onclick="return warningList();")
+        button.btn(style="font-size: 15px; background-color: red;") Delete
 
 
   #myModal.modal.fade(role='dialog')
