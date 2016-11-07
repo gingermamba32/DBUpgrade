@@ -34,45 +34,72 @@ block content
    h5(style="text-align:left; color:black;") &nbsp;&nbsp;&nbsp;&nbsp; EX: #[strong 18.SI.1] &rarr; colors 1,10,1001,12 etc.
    h5(style="text-align:left; color:black;") 2.  Clicking on the #[strong Description] label opens a search modal
    h5(style="text-align:left; color:black;") 3.  Currently you may only search by #[strong two] input fields at once
-   h5(style="text-align:left; color:black;") 4.  Let me know if there are any products with no upcs assigned
+   h5(style="text-align:left; color:black; padding-bottom: 40px;") 4.  Let me know if there are any products with no upcs assigned
 
   div(style="width:700px; margin:0 auto")
    h5(style="color:black;") Adding Search Buttons:
    h5(style="text-align:left; color:black;") 1.  Decide if new upcs will need a new color or style
-   h5(style="text-align:left; color:black;") &nbsp;&nbsp;&nbsp;&nbsp; EX: #[strong 18.SI.1.] &rarr; only the color 1
-   h5(style="text-align:left; color:black;") &nbsp;&nbsp;&nbsp;&nbsp; EX: #[strong 18.SI.1] &rarr; colors 1,10,1001,12 etc.
-   h5(style="text-align:left; color:black;") 2.  Clicking on the #[strong Description] label opens a search modal
-   h5(style="text-align:left; color:black;") 3.  Currently you may only search by #[strong two] input fields at once
-   h5(style="text-align:left; color:black;") 4.  Let me know if there are any products with no upcs assigned
-
-
-   //- Testing for looping in jade - need to also sort these when I display them
-    // TO DO: Add all to database......make sure the search still works
-    ///display them in the popup. Test
-
-
-  div(style="width:700px; margin:0 auto")
-   h5(style="color:black;") List Out the Search Buttons
-    each post, i in nums
-     if (post.type == 'Tool')
-      h5=post.radio
-      a(href="/deletebutton/#{post.id}", onclick="return warningList();")
-       button.btn Delete
+   h5(style="text-align:left; color:black;") EX: Flat-Tip (This is a new style, but we have all the colors)
+   h5(style="text-align:left; color:black;") 2.  Submit search button using the Product ID from the master list
+   h5(style="text-align:left; color:black;") EX:  Flat-Tip (the Product ID describes the style as "FTIP", so input "FTIP")
 
   
 
   .submit-content
    form.proposal-form.br(method="Post", action="/radioAdd")
-    h2.sub Add Search Button
-    h4 Input Your Product Search Button
-    input(type="text", placeholder="New Search Button!", size="40", name="radio" )
-    label Select Button Type
-    select.form-control( name="searchtype")
+    h2.sub(style="margin: 0; padding-top: 10px; padding-bottom: 10px;") Add Search Button
+    input(type="text", placeholder="Input search button term here!", size="40", name="radio", style="font-size: 22px; margin-bottom: 0px;" )
+    label(style="padding-top: 20px; font-size: 22px; color: ##465058;") Select Button Type
+    select.form-control(name="searchtype")
      option Length
      option Style
      option Color
      option Tool
+    br
+    br
+    br
     button.btn.invSub(type="submit") Submit New Search
+    br
+    br
+  
+  
+  h5(style="color:black;padding-top: 50px;") List Out the Search Buttons
+
+  table.table-striped.table-bordered.table-responsive(width="90%", align="center", style="font-size:18px; color:black; padding-bottom: 35px;")
+    tr(style="margin: 0 auto; background: #52bab3;")
+     td #[b LENGTH]
+     td #[a(data-toggle="modal" data-target="#myModal", style="text-decoration:none; cursor: pointer; color:black; font-weight: 600;") STYLE]
+     td #[b COLOR]
+     td #[b TOOL]
+    tr
+     td(width="25%; vertical-align: top; display: table-cell; padding; 0px;")
+      each post, i in nums
+       if (post.type == 'Length')
+        div(style="border: 1px solid #ddd;")
+         p(style="margin-bottom: 0px; padding-bottom: 0px; font-weight: 700;")=post.radio
+         a(href="/deletebutton/#{post.id}", onclick="return warningList();")
+          button.btn(style="font-size: 15px; background-color: red;") Delete
+     td(width="25%;")
+      each post, i in nums
+       if (post.type == 'Style')
+        div(style="border: 1px solid #ddd;")
+         p(style="margin-bottom: 0px; padding-bottom: 0px; font-weight: 700;")=post.radio
+         a(href="/deletebutton/#{post.id}", onclick="return warningList();")
+          button.btn(style="font-size: 15px; background-color: red;") Delete
+     td(width="25%;")
+      each post, i in nums
+       if (post.type == 'Color')
+        div(style="border: 1px solid #ddd;")
+         p(style="margin-bottom: 0px; padding-bottom: 0px; font-weight: 700;")=post.radio
+         a(href="/deletebutton/#{post.id}", onclick="return warningList();")
+          button.btn(style="font-size: 15px; background-color: red;") Delete
+     td(width="25%;")
+      each post, i in nums
+       if (post.type == 'Tool')
+        div(style="border: 1px solid #ddd;")
+         p(style="margin-bottom: 0px; padding-bottom: 0px; font-weight: 700;")=post.radio
+         a(href="/deletebutton/#{post.id}", onclick="return warningList();")
+          button.btn(style="font-size: 15px; background-color: red;") Delete
 
 
 
