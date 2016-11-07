@@ -130,8 +130,7 @@ router.get('/invalidInventory', function(req, res, next) {
 
 router.get('/test', function(req, res, next) {
 	res.render('test');
-})
-
+});
 
 // Search by Button Modal
 router.post('/radioSearch', function(req,res,next){
@@ -154,51 +153,72 @@ router.post('/radioSearch', function(req,res,next){
 
 
 	
-	//new RegExp("^"
+	//new RegExp("^" this is for the length only
 	if (req.body.type == undefined && req.body.color == undefined){
 		Locations.find({description: new RegExp("^" + req.body.length)}).sort({shipment: 1}).exec(function(err,docs){
 			console.log( docs + ' good query length');
-			res.render('query', {'nums':docs});
-		})
+			Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
+		});
 
 	}
 	// Individual Products
 	else if (req.body.length == undefined && req.body.color == undefined){
 		Locations.find({description: new RegExp(req.body.type)}).sort({shipment: 1}).exec(function(err,docs){
 			console.log( docs + ' good query type');
-			res.render('query', {'nums': docs});
+			Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 		})
 	}
 
 	else if (req.body.length == undefined && req.body.type == undefined){
 		Locations.find({description: new RegExp(req.body.color)}).sort({shipment: 1}).exec(function(err, docs){
 			console.log( docs + ' good query color');
-			res.render('query', {'nums': docs});
+			Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 		})
 	}
 	else if (req.body.color == undefined){
 		Locations.find({description: new RegExp("^" + req.body.length + "." + req.body.type)}).sort({shipment: 1}).exec(function(err,docs){
 			console.log( docs + ' good query length+type');
-			res.render('query', {'nums':docs});
+			Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 		})
 	}
 	else if (req.body.length == undefined){
 		Locations.find({description: new RegExp(req.body.type + "\." + req.body.color + "\.$")}).sort({shipment: 1}).exec(function(err,docs){
 			console.log( docs + ' good query type + color');
-			res.render('query', {'nums':docs});
+			Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 		})
 	}
 
 	else if (req.body.type == undefined){
 		Locations.find({description: new RegExp("^"+req.body.length + ".*" + req.body.color + "\.$")}).sort({shipment: 1}).exec(function(err, docs){
 			console.log( docs + ' good query length + color');
-			res.render('query', {'nums': docs});
+			Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 		})
 	}
 	else {
 	Locations.find({description: req.body.length + "." + req.body.type + "." + req.body.color + "."}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
-		res.render('query', {'nums':docs});	
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 		});
 	}
 })
@@ -1406,70 +1426,100 @@ router.post('/query', function(req,res,next){
 	if (req.body.barcode != '' && req.body.location != ''){
 		Locations.find({upc: req.body.barcode, location: (req.body.location).toUpperCase()}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
-		res.render('query', {'nums':docs});	
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 		})
 	}	
 
 	else if (req.body.barcode != '' && req.body.description != ''){
 		Locations.find({upc: req.body.barcode, description: new RegExp((req.body.description).toUpperCase())}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
-		res.render('query', {'nums':docs});	
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 		})
 	}
 
 	else if (req.body.barcode != '' && req.body.qty != ''){
 		Locations.find({upc: req.body.barcode, quantity: req.body.qty}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
-		res.render('query', {'nums':docs});	
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});	
 		})
 	}	
 
 	else if (req.body.barcode != '' && req.body.po != ''){
 		Locations.find({upc: req.body.barcode, shipment: (req.body.po).toUpperCase()}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
-		res.render('query', {'nums':docs});	
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 		})
 	}	
 
 	else if (req.body.description != '' && req.body.location != ''){
 		Locations.find({description: new RegExp((req.body.description).toUpperCase()), location: req.body.location}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
-		res.render('query', {'nums':docs});	
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 		})
 	}	
 
 	else if (req.body.description != '' && req.body.qty != ''){
 		Locations.find({description: new RegExp((req.body.description).toUpperCase()), quantity: req.body.qty}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
-		res.render('query', {'nums':docs});	
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 		})
 	}	
 
 	else if (req.body.description != '' && req.body.po != ''){
 		Locations.find({description: new RegExp((req.body.description).toUpperCase()), shipment: req.body.po}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
-		res.render('query', {'nums':docs});	
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});	
 		})
 	}	
 
 	else if (req.body.location != '' && req.body.qty != ''){
 		Locations.find({location: (req.body.location).toUpperCase(), quantity: req.body.qty}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
-		res.render('query', {'nums':docs});	
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 		})
 	}	
 
 	else if (req.body.location != '' && req.body.po != ''){
 		Locations.find({location: (req.body.location).toUpperCase(), shipment: (req.body.po).toUpperCase()}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
-		res.render('query', {'nums':docs});	
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});	
 		})
 	}	
 
 	else if (req.body.qty != '' && req.body.po != ''){
 		Locations.find({quantity: req.body.qty, shipment: (req.body.po).toUpperCase()}).sort({shipment: 1}).exec(function(err,docs){
 		console.log( docs + ' good query');
-		res.render('query', {'nums':docs});	
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 		})
 	}	
 
@@ -1477,7 +1527,10 @@ router.post('/query', function(req,res,next){
 	else if (req.body.barcode != ''){
     Locations.find({upc: new RegExp("^" + req.body.barcode)}).sort({shipment: 1}).exec(function(err, docs) {
 			console.log( docs + ' good query');
-		res.render('query', {'nums':docs});
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 	 });
 	}
 
@@ -1489,13 +1542,19 @@ router.post('/query', function(req,res,next){
 		if ( ((req.body.description).split('.').length-1) === 3 ){
 			Locations.find({description: new RegExp("^" + (req.body.description).toUpperCase() + '$')}).sort({shipment: 1}).exec(function(err, docs) {
 				console.log( docs + ' good query');
-				res.render('query', { 'nums': docs });
+				Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 	 		});
 		}
 		else {
 			Locations.find({description: new RegExp((req.body.description).toUpperCase())}).sort({shipment: 1}).exec(function(err, docs) {
 			console.log( docs + ' good query');
-			res.render('query', { 'nums': docs });
+			Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 	 		});
 		}
 	}
@@ -1503,21 +1562,30 @@ router.post('/query', function(req,res,next){
 	else if (req.body.location != '') {
 		Locations.find({location: (req.body.location).toUpperCase()}).sort({shipment: 1}).exec(function(err, docs) {
 			console.log( docs + 'good query');
-		res.render('query', { 'nums': docs });
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 	 });
 	}
 
 	else if (req.body.qty != ''){
 		Locations.find({quantity: req.body.qty}).sort({shipment: 1}).exec(function(err, docs) {
 			console.log( docs + 'good query');
-		res.render('query', { 'nums': docs });
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 	 });
 	}
 
 	else if (req.body.po != ''){
 		Locations.find({shipment: (req.body.po).toUpperCase()}).sort({quantity: 1}).exec(function(err, docs) {
 			console.log( docs + ' good query');
-		res.render('query', {'nums':docs});
+		Radios.find().exec(function(err,files){
+				console.log(files);
+				res.render('query', {'nums':docs, 'num':files});
+			});
 	 });
 	}
 
